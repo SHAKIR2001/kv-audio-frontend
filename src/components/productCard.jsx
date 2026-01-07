@@ -1,5 +1,5 @@
 import "./productCard.css"
-export default function ProductCard(){ //need to be the function's first letter as capital (must)
+export default function ProductCard(props){ //need to be the function's first letter as capital (must)
     
     return(
         <div>
