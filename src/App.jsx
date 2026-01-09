@@ -8,7 +8,8 @@ function App() {
   return (
     <div className='w-full h-screen flex'>
 
-      <div className='w-[300px] h-full bg-green-200'></div>
+      <div className='w-[400px] h-full bg-green-200'></div>
+      <div className="w-full bg-red-900"> </div>
 
 
 
