@@ -2,6 +2,8 @@ import './App.css'
 import ProductCard from './components/productCard'
 import { BsGraphDown } from "react-icons/bs";
 import { FaRegBookmark } from "react-icons/fa";
+import { MdOutlineSpeaker } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
 function App() {
 
 
@@ -10,7 +12,7 @@ function App() {
 
       <div className='w-[400px] h-full bg-green-200'>
 
-      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer bg-red-400 flex justify-center items-center">
+      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
         <BsGraphDown />
           Dashboard
       </button>
@@ -20,16 +22,14 @@ function App() {
           Bookings
       </button>
 
-      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer">
+      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
+          <MdOutlineSpeaker />
           Items
       </button>
 
-      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer">
+      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
+        <FaRegUser />
           Users
-      </button>
-
-      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer">
-          Reviews
       </button>
 
       </div>
