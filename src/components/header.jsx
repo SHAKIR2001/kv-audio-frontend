@@ -5,6 +5,8 @@ export default function Header(){
         <header className="w-full h-[100px] shadow-xl ">
             <Link to="/" className=" text-[25px] font-bold">Home</Link>
             <Link to="/admin" className=" text-[25px] font-bold">Admin</Link>
+            <Link to="/contact" className=" text-[25px] font-bold">Contact</Link>
+            <Link to="/gallery" className=" text-[25px] font-bold">Gallery</Link>
 
 
 
