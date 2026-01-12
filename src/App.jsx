@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AdminPage from './components/adminPage';
+import AdminPage from './pages/admin/adminPage';
 function App() {
 
 
