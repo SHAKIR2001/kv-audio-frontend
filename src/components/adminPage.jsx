@@ -15,15 +15,15 @@ export default function AdminPage(props){
           Dashboard
       </button>
 
-      <Link to="/admin/booking" className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
+      <Link to= "/admin/bookings" className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
           <FaRegBookmark />
           Bookings
       </Link>
 
-      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
+      <Link to= "/admin/items" className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
           <MdOutlineSpeaker />
           Items
-      </button>
+      </Link>
 
       <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
         <FaRegUser />
