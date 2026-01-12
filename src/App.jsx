@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes path="/*">
         <Route path="/admin/*" element={<AdminPage/>}/>
-        <Route className="bg-[#f1a014]" path="/*" element={<HomePage/>}/> 
+        <Route path="/*" element={<HomePage/>}/> 
 
 
 
