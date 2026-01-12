@@ -9,7 +9,12 @@ function App() {
       <Routes path="/*">
         <Route path="admin" element={<AdminPage/>}/>
         <Route path="/" element={<h1>Home</h1>}/>
-        
+
+
+
+
+        <Route path="/*" element={<h1>Page not found</h1>}/>
+
 
 
       </Routes>
