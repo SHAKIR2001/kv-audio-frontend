@@ -10,12 +10,12 @@ function App() {
     <BrowserRouter>
       <Routes path="/*">
         <Route path="/admin/*" element={<AdminPage/>}/>
-        <Route path="/" element={<HomePage/>}/>
+        <Route path="/*" element={<HomePage/>}/>
 
 
 
 
-        <Route path="/*" element={<h1>Page not found</h1>}/>
+       
 
 
 
