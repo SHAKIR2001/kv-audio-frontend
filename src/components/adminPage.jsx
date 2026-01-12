@@ -1,6 +1,7 @@
 import { BsGraphDown } from "react-icons/bs";
 import { FaRegBookmark, FaRegUser } from "react-icons/fa";
 import { MdOutlineSpeaker } from "react-icons/md";
+import { Routes, Route } from "react-router-dom";
 
 export default function AdminPage(props){
     return(
@@ -32,7 +33,16 @@ export default function AdminPage(props){
       </div>
 
 
-      <div className="w-[calc(100vw-400px)] bg-blue-900"> </div>
+      <div className="w-[calc(100vw-400px)] bg-blue-900"> 
+        <Routes path="/*">
+          <Route path="/bookings" element={<h1>Booking</h1>}/>
+        
+        
+        
+        </Routes>
+
+      </div>
+
       
 
     </div>
