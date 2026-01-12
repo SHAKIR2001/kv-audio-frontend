@@ -11,9 +11,11 @@ function App() {
 
   return (
     <BrowserRouter>
-   <div>
-      <AdminPage/>
-   </div>
+    <Routes path="/*">
+
+
+
+    </Routes>
    </BrowserRouter>
   )
 }
