@@ -1,7 +1,7 @@
 import { BsGraphDown } from "react-icons/bs";
 import { FaRegBookmark, FaRegUser } from "react-icons/fa";
 import { MdOutlineSpeaker } from "react-icons/md";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 export default function AdminPage(props){
     return(
@@ -15,10 +15,10 @@ export default function AdminPage(props){
           Dashboard
       </button>
 
-      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
+      <Link to="/admin/booking" className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
           <FaRegBookmark />
           Bookings
-      </button>
+      </Link>
 
       <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
           <MdOutlineSpeaker />
