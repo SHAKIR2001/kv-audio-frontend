@@ -1,5 +1,6 @@
 export default function Testing(){
-    let count = 0;
+    const [count,setCount] = useState(0,)
+
     return(
         <div className="w-full h-screen bg-red-900">
           
@@ -8,7 +9,8 @@ export default function Testing(){
                 count ++
                 console.log(count)
             }}>Count</button>
-
+            <h1>{count}</h1>
         </div>
+         
     )
 }
