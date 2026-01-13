@@ -7,8 +7,8 @@ export default function Testing(){
             
             <h1>{count}</h1>
             <button className="cursor-pointer" onClick={()=>{
-                
-                setCount(count++)
+                const newCount = count + 1
+                setCount(newCount)
             }}>Count</button>
             
         </div>
