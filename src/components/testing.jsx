@@ -12,7 +12,7 @@ export default function Testing(){
                 setCount(newCount)
             }}>Count</button>
 
-            <div className="flex w-[350px] justify-between items-center m-">
+            <div className="flex w-[350px] justify-between items-center mt-3">
 
             <button className="cursor-pointer border rounded bg-yellow-500 p-1 m-1" onClick={()=>{
             
