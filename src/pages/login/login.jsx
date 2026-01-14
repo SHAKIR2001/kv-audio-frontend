@@ -10,7 +10,7 @@ export default function LoginPage(){
       <div className="w-full h-screen flex justify-center items-center bg-picture ">
 
 
-        <div className="w-[400px] h-[400px] bg-amber-200">
+        <div className="w-[400px] h-[400px] backdrop-blur-xl rounded-2xl">
 
         </div>
 
