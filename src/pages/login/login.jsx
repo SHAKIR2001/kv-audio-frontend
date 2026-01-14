@@ -65,16 +65,7 @@ export default function LoginPage(){
       Login
     </button>
 
-    {/* Extra actions */}
-    <div className="w-full flex justify-between text-sm text-gray-300">
-      <label className="flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" className="accent-purple-500" />
-        Remember me
-      </label>
-      <a href="#" className="hover:text-purple-400 transition">
-        Forgot password?
-      </a>
-    </div>
+
 
   </div>
   </form>
