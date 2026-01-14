@@ -12,7 +12,7 @@ export default function LoginPage(){
     return(
 
 <div className="w-full h-screen flex justify-center items-center bg-picture bg-cover bg-center">
- <form>
+ <form onSubmit={handleOnSubmit}>
   {/* Card */}
   <div className="w-[400px] p-8 backdrop-blur-xl bg-black/40 rounded-2xl shadow-2xl flex flex-col items-center">
 
@@ -61,7 +61,7 @@ export default function LoginPage(){
     </div>
 
     {/* Login Button */}
-    <button onClick={login} className="w-full h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold text-lg mb-4">
+    <button className="w-full h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold text-lg mb-4">
       Login
     </button>
 
