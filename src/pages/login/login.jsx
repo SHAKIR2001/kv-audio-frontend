@@ -8,9 +8,7 @@ export default function LoginPage(){
     function handleOnSubmit(){
         console.log("Submitted")
     }
-
-
-
+    
     return(
 
 <div className="w-full h-screen flex justify-center items-center bg-picture bg-cover bg-center">
