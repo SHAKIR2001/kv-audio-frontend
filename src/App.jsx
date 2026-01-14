@@ -10,7 +10,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Toaster/>
+      <Toaster position="top-right"/>
       <Routes path="/*">
         <Route path="/testing" element={<Testing/>}/> 
         <Route path="/admin/*" element={<AdminPage/>}/>
