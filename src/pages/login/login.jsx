@@ -18,6 +18,12 @@ export default function LoginPage(){
             (res)=>{
                 console.log(res)
                 toast.success("Login Success")
+                const user = res.data.user 
+                if(user.role === "admin"){
+                    window.location.href = "/admin/"
+                }else{
+                    window.location.href = "/"
+                }
             }
         ).catch(
             (err)=>{
