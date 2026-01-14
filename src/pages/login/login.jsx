@@ -5,14 +5,14 @@ export default function LoginPage(){
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
 
-    function login(){
-        console.log(email,password)
+    function handleOnSubmit(){
+        
     }
 
     return(
 
 <div className="w-full h-screen flex justify-center items-center bg-picture bg-cover bg-center">
-
+ <form>
   {/* Card */}
   <div className="w-[400px] p-8 backdrop-blur-xl bg-black/40 rounded-2xl shadow-2xl flex flex-col items-center">
 
@@ -77,6 +77,7 @@ export default function LoginPage(){
     </div>
 
   </div>
+  </form>
 </div>
     )
 }
