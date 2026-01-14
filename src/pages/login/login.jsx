@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./login.css"
 export default function LoginPage(){
 
     const [email,setEmail] = useState("")
@@ -6,7 +7,7 @@ export default function LoginPage(){
 
     return(
 
-      <div className="w-full h-screen flex justify-center items-center ">
+      <div className="w-full h-screen flex justify-center items-center bg-picture ">
 
 
         <div className="w-[400px] h-[400px] bg-amber-200">
