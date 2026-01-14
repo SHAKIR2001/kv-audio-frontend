@@ -10,7 +10,7 @@ export default function LoginPage(){
     function handleOnSubmit(e){
         e.preventDefault()
 
-        axios.post("http://localhost:300/api/users/login", {
+        axios.post("http://localhost:3000/api/users/login", {
             email : email,
             password : password
         }).then(
