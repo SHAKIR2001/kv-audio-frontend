@@ -6,7 +6,7 @@ export default function LoginPage(){
     const [password,setPassword] = useState("")
 
     function login(){
-        
+        console.log(email,password)
     }
 
     return(
@@ -38,6 +38,11 @@ export default function LoginPage(){
         type="email"
         placeholder="Email"
         className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
+
+        onChange={
+            (e)=>{
+                setEmail(e.target.value)
+            }}
       />
     </div>
 
@@ -47,6 +52,11 @@ export default function LoginPage(){
         type="password"
         placeholder="Password"
         className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
+
+        onChange={
+            (e)=>{
+                setPassword(e.target.value)
+            }}
       />
     </div>
 
