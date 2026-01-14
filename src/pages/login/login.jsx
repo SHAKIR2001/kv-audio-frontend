@@ -20,7 +20,7 @@ export default function LoginPage(){
             (res)=>{
                 console.log(res)
                 toast.success("Login Success")
-                const user = res.data.user 
+                const user = res.data.user //identify this from browser console
                 if(user.role === "admin"){
                     navigate("/admin")
                 }else{
