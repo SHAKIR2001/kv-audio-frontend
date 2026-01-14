@@ -6,10 +6,13 @@ export default function LoginPage(){
 
     return(
 
-      <div className="w-full h-screen bg-amber-200">
+      <div className="w-full h-screen flex justify-center items-center">
 
 
-        <h1>Login</h1>
+        <div className="w-[400px] h-[400px] bg-amber-200">
+
+        </div>
+
 
 
 
