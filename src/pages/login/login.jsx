@@ -7,12 +7,13 @@ export default function LoginPage(){
 
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const navigate = useNavigate()
 
     function handleOnSubmit(e){
         e.preventDefault()
 
         axios.post("http://localhost:3000/api/users/login", {
-            email : email,
+            email : email, //backend il ulla email & password itku ingu useState moolam eduthth emailum & passowrd ei kuduththal
             password : password
         }).then(
             (res)=>{
@@ -20,9 +21,9 @@ export default function LoginPage(){
                 toast.success("Login Success")
                 const user = res.data.user 
                 if(user.role === "admin"){
-                    window.location.href = "/admin/"
+                    navigate("/admin")
                 }else{
-                    window.location.href = "/"
+                    navigate("/")
                 }
             }
         ).catch(
@@ -63,7 +64,7 @@ export default function LoginPage(){
         type="email"
         placeholder="Email"
         className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
-
+        value={email}
         onChange={
             (e)=>{
                 setEmail(e.target.value)
@@ -77,7 +78,7 @@ export default function LoginPage(){
         type="password"
         placeholder="Password"
         className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
-
+        value = {password}
         onChange={
             (e)=>{
                 setPassword(e.target.value)
