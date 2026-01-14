@@ -64,18 +64,7 @@ export default function LoginPage(){
     <button onClick={login} className="w-full h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold text-lg mb-4">
       Login
     </button>
-
-    {/* Extra actions */}
-    <div className="w-full flex justify-between text-sm text-gray-300">
-      <label className="flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" className="accent-purple-500" />
-        Remember me
-      </label>
-      <a href="#" className="hover:text-purple-400 transition">
-        Forgot password?
-      </a>
-    </div>
-
+    
   </div>
 </div>
     )
