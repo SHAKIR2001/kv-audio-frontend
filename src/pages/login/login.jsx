@@ -1,5 +1,7 @@
 import { useState } from "react"
 import "./login.css"
+import axios from "axios"
+
 export default function LoginPage(){
 
     const [email,setEmail] = useState("")
@@ -7,6 +9,10 @@ export default function LoginPage(){
 
     function handleOnSubmit(e){
         e.preventDefault()
+
+        axios.post("http://localhost:300/api/users/login")
+        
+
     }
 
     return(
