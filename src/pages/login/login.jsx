@@ -6,7 +6,7 @@ export default function LoginPage(){
     const [password,setPassword] = useState("")
 
     function login(){
-        console.log("clciked");
+        
     }
 
     return(
