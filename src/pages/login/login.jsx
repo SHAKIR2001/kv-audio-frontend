@@ -21,11 +21,11 @@ export default function LoginPage(){
                 console.log(res)
                 toast.success("Login Success")
                 const user = res.data.user //identify this from browser console
-                if(user.role === "admin"){
+              /*  if(user.role === "admin"){
                     navigate("/admin")
                 }else{
                     navigate("/")
-                }
+                }*/
             }
         ).catch(
             (err)=>{
