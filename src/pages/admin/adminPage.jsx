@@ -3,6 +3,7 @@ import { FaRegBookmark, FaRegUser } from "react-icons/fa";
 import { MdOutlineSpeaker } from "react-icons/md";
 import { Routes, Route, Link } from "react-router-dom";
 import AdminItemsPage from "./adminItemsPage";
+import AddProduct from "./addProductPage"
 
 
 export default function AdminPage(props){
@@ -39,7 +40,7 @@ export default function AdminPage(props){
         <Routes path="/*">
           <Route path="/bookings" element={<h1>Booking</h1>}/>
           <Route path="/items" element={<AdminItemsPage/>}/>
-          <Route path="/items/add" element={<AdminItemsPage/>} />
+          <Route path="/items/add" element={<AddProduct/>} />
         
         
         
