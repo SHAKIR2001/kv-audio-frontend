@@ -1,4 +1,4 @@
-export default function ItemsPage(){
+export default function AdminItemsPage(){
 
     return(
         <>
