@@ -1,4 +1,5 @@
 export default function AddProduct(){
+    const[productKey,setProductKey] = useState("")
     return(
         <div className="w-full h-full flex flex-col items-center">
             <h1>Add items</h1>
@@ -13,7 +14,7 @@ export default function AddProduct(){
                     
                     
                 </select>
-                
+
                 <input type="text" placeholder="Product Dimensions"/>
                 <input type="text" placeholder="Product Description"/>
 
