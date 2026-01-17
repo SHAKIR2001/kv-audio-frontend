@@ -20,14 +20,14 @@ export default function LoginPage(){
             (res)=>{
                 console.log(res)
                 toast.success("Login Success")
-                const user = res.data.user
+                const user = res.data.user //identify this from browser console(res.data.user)
                 localStorage.setItem("token", res.data.token) //store the key and value in the  cashe table
-                 //identify this from browser console
-              /*  if(user.role === "admin"){
+                 
+               if(user.role === "admin"){
                     navigate("/admin")
                 }else{
                     navigate("/")
-                }*/
+                }
             }
         ).catch(
             (err)=>{
