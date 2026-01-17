@@ -39,6 +39,7 @@ export default function AdminPage(props){
         <Routes path="/*">
           <Route path="/bookings" element={<h1>Booking</h1>}/>
           <Route path="/items" element={<AdminItemsPage/>}/>
+          <Route path="/items/add" element={<AdminItemsPage/>} />
         
         
         
