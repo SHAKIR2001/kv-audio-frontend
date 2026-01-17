@@ -38,7 +38,7 @@ export default function AdminPage(props){
       <div className="w-[calc(100vw-200px)] "> 
         <Routes path="/*">
           <Route path="/bookings" element={<h1>Booking</h1>}/>
-          <Route path="/items" element={AdminItemsPage}/>
+          <Route path="/items" element={<AdminItemsPage/>}/>
         
         
         

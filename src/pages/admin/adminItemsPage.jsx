@@ -1,8 +1,9 @@
 export default function AdminItemsPage(){
 
     return(
-        <>
-            <div><h1>Items</h1></div>
+        <div className="w-full h-full bg-amber-200">
+            
+            
         
         
         
@@ -11,7 +12,7 @@ export default function AdminItemsPage(){
         
         
         
-        </>
+        </div>
     )
 
 }
