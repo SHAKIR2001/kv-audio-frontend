@@ -1,5 +1,15 @@
+import { useState } from "react" 
 export default function AddProduct(){
-    const[productKey,setProductKey] = useState("")
+    const[productKey,setProductKey] = useState("");
+    const[productName,setproductName] = useState("");
+    const[productPrice,setproductPrice] = useState("");
+    const[productDescription,setproductDescription] = useState("");
+    const[productDimensions,setproductDimensions] = useState("");
+
+
+
+
+
     return(
         <div className="w-full h-full flex flex-col items-center">
             <h1>Add items</h1>
