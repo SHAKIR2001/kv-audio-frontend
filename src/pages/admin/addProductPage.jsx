@@ -6,6 +6,13 @@ export default function AddProduct(){
                 <input type="text" placeholder="Product Key"/>
                 <input type="text" placeholder="Product Name"/>
                 <input type="text" placeholder="Product Price"/>
+                
+                <select>
+                    <option key="audio">Audio</option>
+                    <option key="lights">Lights</option>
+                    
+                    
+                </select>
                 <button className="border cursor-pointer">Add</button>
 
 
