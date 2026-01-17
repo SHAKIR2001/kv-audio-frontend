@@ -9,57 +9,111 @@ export default function AddProduct() {
   const [productDimensions, setproductDimensions] = useState("");
 
   return (
-    <div className="w-full h-full flex flex-col items-center">
-      <h1>Add items</h1>
+    <div className="w-full min-h-screen bg-gray-100 flex justify-center items-start py-10">
 
-      <div className="w-[400px] border flex flex-col items-center">
+      {/* Card */}
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
 
-        <input
-          type="text"
-          placeholder="Product Key"
-          value={productKey}
-          onChange={(e) => setProductKey(e.target.value)}
-        />
+        {/* Title */}
+        <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
+          Add New Product
+        </h1>
 
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={productName}
-          onChange={(e) => setproductName(e.target.value)}
-        />
+        {/* Form */}
+        <div className="flex flex-col gap-4">
 
-        <input
-          type="text"
-          placeholder="Product Price"
-          value={productPrice}
-          onChange={(e) => setproductPrice(e.target.value)}
-        />
+          {/* Product Key */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Product Key
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. JBL-AUD-001"
+              value={productKey}
+              onChange={(e) => setProductKey(e.target.value)}
+              className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
 
-        <select
-          value={productCatagorie}
-          onChange={(e) => setProductCatagorie(e.target.value)}
-        >
-          <option value="">Select category</option>
-          <option value="audio">Audio</option>
-          <option value="lights">Lights</option>
-        </select>
+          {/* Product Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Product Name
+            </label>
+            <input
+              type="text"
+              placeholder="Product name"
+              value={productName}
+              onChange={(e) => setproductName(e.target.value)}
+              className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
 
-        <input
-          type="text"
-          placeholder="Product Dimensions"
-          value={productDimensions}
-          onChange={(e) => setproductDimensions(e.target.value)}
-        />
+          {/* Product Price */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Price (LKR)
+            </label>
+            <input
+              type="text"
+              placeholder="2250"
+              value={productPrice}
+              onChange={(e) => setproductPrice(e.target.value)}
+              className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
 
-        <input
-          type="text"
-          placeholder="Product Description"
-          value={productDescription}
-          onChange={(e) => setproductDescription(e.target.value)}
-        />
+          {/* Category */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Category
+            </label>
+            <select
+              value={productCatagorie}
+              onChange={(e) => setProductCatagorie(e.target.value)}
+              className="w-full h-11 px-3 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="">Select category</option>
+              <option value="audio">Audio</option>
+              <option value="lights">Lights</option>
+            </select>
+          </div>
 
-        <button className="border cursor-pointer">Add</button>
+          {/* Dimensions */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Dimensions
+            </label>
+            <input
+              type="text"
+              placeholder="10cm x 8cm x 5cm"
+              value={productDimensions}
+              onChange={(e) => setproductDimensions(e.target.value)}
+              className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
 
+          {/* Description */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Description
+            </label>
+            <textarea
+              rows="3"
+              placeholder="Short product description"
+              value={productDescription}
+              onChange={(e) => setproductDescription(e.target.value)}
+              className="w-full px-3 py-2 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          {/* Button */}
+          <button className="mt-4 h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold">
+            Add Product
+          </button>
+
+        </div>
       </div>
     </div>
   );
