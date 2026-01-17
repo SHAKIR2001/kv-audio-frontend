@@ -8,7 +8,7 @@ export default function AdminPage(props){
     <div className='w-full h-screen flex'>
         
 
-      <div className='w-[400px] h-full bg-green-200'>
+      <div className='w-[200px] h-full bg-green-200'>
 
       <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
         <BsGraphDown />
@@ -33,7 +33,7 @@ export default function AdminPage(props){
       </div>
 
 
-      <div className="w-[calc(100vw-400px)] bg-blue-900"> 
+      <div className="w-[calc(100vw-200px)] bg-blue-900"> 
         <Routes path="/*">
           <Route path="/bookings" element={<h1>Booking</h1>}/>
           <Route path="/items" element={<h1>Items</h1>}/>
