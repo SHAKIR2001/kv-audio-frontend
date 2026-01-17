@@ -1,6 +1,6 @@
 export default function AddProduct(){
     return(
-        <div>
+        <div className="w-full h-full bg-black">
         
         
         
