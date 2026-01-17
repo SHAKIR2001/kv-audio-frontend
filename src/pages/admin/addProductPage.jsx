@@ -113,6 +113,11 @@ export default function AddProduct() {
             Add Product
           </button>
 
+          {/* Button */}
+          <button className="mt-4 h-12 bg-red-600 hover:bg-red-700 transition rounded-lg text-white font-semibold">
+            Cancel
+          </button>
+
         </div>
       </div>
     </div>
