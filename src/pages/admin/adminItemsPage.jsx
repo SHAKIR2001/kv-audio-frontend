@@ -1,3 +1,8 @@
+const sampleArr = [
+    {
+        
+    }
+]
 import { CiCirclePlus } from "react-icons/ci";
 import { Link } from "react-router-dom";
 export default function AdminItemsPage(){
