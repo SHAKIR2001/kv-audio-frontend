@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AddProduct() {
   const [productKey, setProductKey] = useState("");
@@ -9,6 +10,7 @@ export default function AddProduct() {
   const [productCatagorie, setProductCatagorie] = useState("");
   const [productDescription, setproductDescription] = useState("");
   const [productDimensions, setproductDimensions] = useState("");
+  const navigate = useNavigate();
 
   async function handleAddItem() {
   console.log(
