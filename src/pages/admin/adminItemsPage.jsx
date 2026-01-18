@@ -67,6 +67,35 @@ export default function AdminItemsPage(){
 
     return(
         <div className="w-full h-full relative">
+            <table>
+                <thead>
+                    <th></th>
+                </thead>
+            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
            <Link to="/admin/items/add">
                  <CiCirclePlus className="text-[100px] absolute bottom-2 right-2 hover:text-red-900 cursor-pointer "/>
