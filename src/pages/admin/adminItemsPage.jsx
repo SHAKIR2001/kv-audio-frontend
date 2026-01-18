@@ -6,7 +6,7 @@ const sampleArr = [
     category: "Audio",
     dimensions: "8.6cm x 6.9cm x 4cm",
     description: "Compact portable Bluetooth speaker with powerful sound and punchy bass.",
-    availability: true,
+    availability: "Availabile",
     image: [
       "https://m.media-amazon.com/images/I/713TUYjagQL._AC_SY300_SX300_QL70_FMwebp_.jpg"
     ]
@@ -18,7 +18,7 @@ const sampleArr = [
     category: "Audio",
     dimensions: "19cm x 17cm x 6cm",
     description: "Lightweight on-ear headphones with dynamic sound and comfortable design.",
-    availability: true,
+    availability: "Availabile",
     image: [
       "https://m.media-amazon.com/images/I/51UQJQzZrOL._AC_SY300_SX300_.jpg"
     ]
@@ -30,7 +30,7 @@ const sampleArr = [
     category: "Lights",
     dimensions: "5m length",
     description: "Multi-color RGB LED strip with remote control, ideal for room decoration.",
-    availability: true,
+    availability: "Availabile",
     image: [
       "https://m.media-amazon.com/images/I/61QkK7z1UHL._AC_SY300_SX300_.jpg"
     ]
@@ -42,7 +42,7 @@ const sampleArr = [
     category: "Audio",
     dimensions: "15cm x 5cm",
     description: "Plug-and-play USB microphone suitable for streaming, recording, and meetings.",
-    availability: true,
+    availability: "Availabile",
     image: [
       "https://m.media-amazon.com/images/I/61CGHv6kmWL._AC_SY300_SX300_.jpg"
     ]
@@ -54,7 +54,7 @@ const sampleArr = [
     category: "Lights",
     dimensions: "10 inch diameter",
     description: "Adjustable brightness LED ring light perfect for video calls and photography.",
-    availability: true,
+    availability: "Availabile",
     image: [
       "https://m.media-amazon.com/images/I/61q4M0ZKZyL._AC_SY300_SX300_.jpg"
     ]
