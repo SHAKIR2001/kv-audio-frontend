@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function AddProduct() {
   const [productKey, setProductKey] = useState("");
   const [productName, setproductName] = useState("");
-  const [productPrice, setproductPrice] = useState("");
+  const [productPrice, setproductPrice] = useState(0);
   const [productCatagorie, setProductCatagorie] = useState("");
   const [productDescription, setproductDescription] = useState("");
   const [productDimensions, setproductDimensions] = useState("");
@@ -61,7 +61,6 @@ export default function AddProduct() {
             </label>
             <input
               type="number"
-              placeholder="2250"
               value={productPrice}
               onChange={(e) => setproductPrice(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
