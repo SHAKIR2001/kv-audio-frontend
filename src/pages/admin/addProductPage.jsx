@@ -159,7 +159,7 @@ export default function AddProduct() {
           </button>
 
           {/* Button */}
-          <button onclick={()=>{navigate("/admin/items")}}className="mt-4 h-12 bg-red-600 hover:bg-red-700 transition rounded-lg text-white font-semibold">
+          <button onClick={()=>{navigate("/admin/items")}}className="mt-4 h-12 bg-red-600 hover:bg-red-700 transition rounded-lg text-white font-semibold">
             Cancel
           </button>
 
