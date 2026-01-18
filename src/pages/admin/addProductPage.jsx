@@ -8,6 +8,10 @@ export default function AddProduct() {
   const [productDescription, setproductDescription] = useState("");
   const [productDimensions, setproductDimensions] = useState("");
 
+  function handleAddItem(){
+    console.log(productKey,productName,productPrice,productCatagorie,productDescription,productDimensions)
+  }
+
   return (
     <div className="w-full min-h-screen bg-gray-100 flex justify-center items-start py-10">
 
@@ -56,7 +60,7 @@ export default function AddProduct() {
               Price (LKR)
             </label>
             <input
-              type="text"
+              type="number"
               placeholder="2250"
               value={productPrice}
               onChange={(e) => setproductPrice(e.target.value)}
