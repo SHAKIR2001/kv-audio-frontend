@@ -69,8 +69,26 @@ export default function AdminItemsPage(){
         <div className="w-full h-full relative">
             <table>
                 <thead>
-                    <th></th>
+                    <th>Key</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Dimensions</th>
+                    <th>availability</th>
                 </thead>
+
+                <tbody>
+                    <tr>
+                        <td>AUD-JBL-001</td>
+                        <td>JBL Go 3 Portable Speaker</td>
+                        <td>2250</td>
+                        <td>Audio</td>
+                        <td>8.6cm x 6.9cm x 4cm</td>
+                        <td>Availbale</td>
+
+                    </tr>
+
+                </tbody>
             </table>
 
 
