@@ -11,10 +11,10 @@ export default function AddProduct() {
 
   async function handleAddItem(){
     console.log(productKey,productName,productPrice,productCatagorie,productDescription,productDimensions)
-    const token = localStorage.getItem("token") //get  this token from login.jsx
+    const token = localStorage.getItem("token") //get  this token from login.jsx (whre we store the toekn in local storage)
 
     if(token){
-      await axios.post("http://localhost:300/api/products/addProduct", {
+      const result = await axios.post("http://localhost:300/api/products/addProduct", {
         key : productKey, //backend(key)   useTste(productKey)
         name :productName,
         price : productPrice,
@@ -27,6 +27,7 @@ export default function AddProduct() {
           Authorization : "Bearer " + token
         }
       })
+      console.log(result)
     }else{
       toast.error("You are not authorized to add items");
     }
