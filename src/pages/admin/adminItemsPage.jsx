@@ -87,6 +87,15 @@ export default function AdminItemsPage(){
                         <td>Availbale</td>
 
                     </tr>
+                                        <tr>
+                        <td>AUD-JBL-002</td>
+                        <td>JBL Go 4 Portable Speaker</td>
+                        <td>4250</td>
+                        <td>Audio</td>
+                        <td>9.6cm x 7.9cm x 5cm</td>
+                        <td>Availbale</td>
+
+                    </tr>
 
                 </tbody>
             </table>
