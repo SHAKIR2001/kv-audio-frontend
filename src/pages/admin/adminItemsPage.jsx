@@ -72,14 +72,14 @@ export default function AdminItemsPage(){
         <div className="w-full h-full relative">
             <table>
                 <thead>
-                 
+                 <tr>
                     <th>Key</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Category</th>
                     <th>Dimensions</th>
                     <th>availability</th>
-                 
+                 </tr>
                 </thead>
 
                 <tbody>
@@ -89,6 +89,11 @@ export default function AdminItemsPage(){
                             return(
                                 <tr>
                                     <td>{product.key}</td>
+                                    <td>{product.name}</td>
+                                    <td>{product.price}</td>
+                                    <td>{product.category}</td>
+                                    <td>{product.dimensions}</td>
+                                    <td>{product.availability}</td>
                                 </tr>
                             )
                         })
