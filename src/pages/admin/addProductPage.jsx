@@ -10,6 +10,11 @@ export default function AddProduct() {
 
   function handleAddItem(){
     console.log(productKey,productName,productPrice,productCatagorie,productDescription,productDimensions)
+    const token = localStorage.getItem("token") //get  this token from login.jsx
+
+    if(token == null){
+      toast.error("Please login and try again")
+    }
   }
 
   return (
