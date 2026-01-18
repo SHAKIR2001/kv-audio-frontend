@@ -113,7 +113,7 @@ export default function AddProduct() {
           </div>
 
           {/* Button */}
-          <button className="mt-4 h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold">
+          <button onclick={handleAddItem}  className="mt-4 h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold">
             Add Product
           </button>
 
