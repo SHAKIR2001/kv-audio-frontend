@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function AddProduct() {
   const [productKey, setProductKey] = useState("");
@@ -14,7 +15,7 @@ export default function AddProduct() {
     const token = localStorage.getItem("token") //get  this token from login.jsx (whre we store the toekn in local storage)
 
     if(token){
-      const result = await axios.post("http://localhost:300/api/products/addProduct", {
+      const result = await axios.post("http://localhost:3000/api/products", {
         key : productKey, //backend(key)   useTste(productKey)
         name :productName,
         price : productPrice,
@@ -28,6 +29,7 @@ export default function AddProduct() {
         }
       })
       console.log(result)
+      toast.success(res.data.message)
     }else{
       toast.error("You are not authorized to add items");
     }
