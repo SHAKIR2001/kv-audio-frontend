@@ -10,32 +10,47 @@ export default function AddProduct() {
   const [productDescription, setproductDescription] = useState("");
   const [productDimensions, setproductDimensions] = useState("");
 
-  async function handleAddItem(){
-    console.log(productKey,productName,productPrice,productCatagorie,productDescription,productDimensions)
-    const token = localStorage.getItem("token") //get  this token from login.jsx (whre we store the toekn in local storage)
+  async function handleAddItem() {
+  console.log(
+    productKey,
+    productName,
+    productPrice,
+    productCatagorie,
+    productDescription,
+    productDimensions
+  );
 
-    if(token){
-      const result = await axios.post("http://localhost:3000/api/products", {
-        key : productKey, //backend(key)   useTste(productKey)
-        name :productName,
-        price : productPrice,
-        category : productCatagorie,
-        dimensions : productDimensions,
-        description : productDescription
+  const token = localStorage.getItem("token"); // get token from localStorage
 
-      },{
-        headers : {
-          Authorization : "Bearer " + token
+  if (token) {
+    try {
+      const result = await axios.post(
+        "http://localhost:3000/api/products",
+        {
+          key: productKey, // backend(key) ← useState(productKey)
+          name: productName,
+          price: productPrice,
+          category: productCatagorie,
+          dimensions: productDimensions,
+          description: productDescription,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
         }
-      })
-      console.log(result)
-      toast.success(res.data.message)
-    }else{
-      toast.error("You are not authorized to add items");
+      );
+
+      console.log(result);
+      toast.success(result.data.message);
+
+    } catch (e) {
+      toast.error(e.response.data.error);
     }
-
-
+  } else {
+    toast.error("You are not authorized to add items");
   }
+}
 
   return (
     <div className="w-full min-h-screen bg-gray-100 flex justify-center items-start py-10">
