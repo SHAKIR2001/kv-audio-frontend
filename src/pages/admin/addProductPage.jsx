@@ -43,7 +43,6 @@ export default function AddProduct() {
         }
       );
 
-      console.log(result);
       toast.success(result.data.message);
 
     } catch (e) {
