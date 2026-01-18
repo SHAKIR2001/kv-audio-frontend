@@ -84,7 +84,7 @@ export default function AdminItemsPage(){
 
                 <tbody>
                     {
-                        items.map((product,index)=>{      //uniq key ondru thevai paduwathal raay in index value ei eduththal 
+                        items.map((product,index)=>{      //uniq key ondru thevai paduwathal aray in index value ei eduththal 
                             console.log(product)
                             return(
                                 <tr key = {index}>                {/*index kudukkaavittalum work pannum but sometimes may be errs waralaam so ithu best practice*/}
