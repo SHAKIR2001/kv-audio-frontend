@@ -72,17 +72,26 @@ export default function AdminItemsPage(){
         <div className="w-full h-full relative">
             <table>
                 <thead>
+                 
                     <th>Key</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Category</th>
                     <th>Dimensions</th>
                     <th>availability</th>
+                 
                 </thead>
 
                 <tbody>
                     {
-                        
+                        items.map((product)=>{
+                            console.log(product)
+                            return(
+                                <tr>
+                                    <td>{product.key}</td>
+                                </tr>
+                            )
+                        })
                     }
 
 
