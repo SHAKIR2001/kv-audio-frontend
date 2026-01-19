@@ -18,6 +18,8 @@ export default function AdminItemsPage() {
       })
       .then((res) => {
         setItems(res.data);
+        setItemsLoaded(true);
+
       })
       .catch(() => {
         toast.error("Cannot find the items");
