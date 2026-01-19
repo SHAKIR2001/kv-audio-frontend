@@ -39,7 +39,7 @@ export default function AdminItemsPage() {
       }).then(
         (res)=>{
           console.log(res.data)
-          setItemsLoaded(true);
+          setItemsLoaded(false);
          // window.location.reload(); reload the page after the deletion happens {idhatku padhilaaha useEffect il ulla itemsLoaded use seiyyappadum }
         }
       ).catch(
