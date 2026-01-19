@@ -11,9 +11,7 @@ export default function AdminItemsPage() {
 
   useEffect(() => {
     if(!itemsLoaded){
-      
-    }
-    const token = localStorage.getItem("token");
+     const token = localStorage.getItem("token");
 
     axios
       .get("http://localhost:3000/api/products", {
@@ -24,7 +22,10 @@ export default function AdminItemsPage() {
       })
       .catch(() => {
         toast.error("Cannot find the items");
-      });
+      });     
+      
+    }
+
   }, [itemsLoaded]);
   
   function handleDelete(key){
