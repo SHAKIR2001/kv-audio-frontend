@@ -61,21 +61,26 @@ const sampleArr = [
   }
 ];
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 export default function AdminItemsPage(){
 
     const [items, setItems] = useState(sampleArr);
 
-    const token = localStorage.getItem("token")
-    axios.get("http://localhost:3000/api/products", {headers:{"Authorization": `Bearer ${token}`}}).then((res)=>{
-      console.log(res.data)
-    }).catch( (err)=>{
-      console.log(err)
-    })
-    
+    useEffect( ()=>{
+      const token = localStorage.getItem("token")
+      axios.get("http://localhost:3000/api/products", {headers:{"Authorization": `Bearer ${token}`}}).then((res)=>{
+        setItems(res.data)
+      }).catch((err)=>{
+          toast.error("Cannot find the items")
+      })
+
+    },[])
+
+
 
     return(
         <div className="w-full h-full relative">
