@@ -73,7 +73,6 @@ export default function AdminItemsPage(){
     useEffect( ()=>{
       const token = localStorage.getItem("token")
       axios.get("http://localhost:3000/api/products", {headers:{"Authorization": `Bearer ${token}`}}).then((res)=>{
-        console.log(res.data)
         setItems(res.data)
       }).catch((err)=>{
           toast.error("Cannot find the items")
