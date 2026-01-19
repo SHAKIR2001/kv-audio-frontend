@@ -33,6 +33,7 @@ export default function AdminItemsPage() {
       }).then(
         (res)=>{
           console.log(res.data)
+          window.location.reload(); //reload the page after the deletion happens
         }
       ).catch(
         (err)=>{
