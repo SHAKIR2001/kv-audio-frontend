@@ -22,6 +22,19 @@ export default function AdminItemsPage() {
         toast.error("Cannot find the items");
       });
   }, []);
+  
+  function handleDelete(key){
+    if(window.confirm( "Are you sure you want to delete this product?")){
+      setItems(items.filter( (item)=>item.key !== key))
+      const token = localStorage.getItem("token")
+      axios.delete(`"http://localhost:3000//api/products/${key}`,{
+        headers : { Authorization: `Bearer ${token}`},
+
+      })
+
+    }
+  }
+  
 
   return (
     <div className="w-full min-h-screen bg-gray-100 p-6 relative">
@@ -86,7 +99,7 @@ export default function AdminItemsPage() {
 
                     {/* Delete */}
                     <button onClick={()=>{
-                      handleDelete()
+                      handleDelete(product.key)
                     }}
                       className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition cursor-pointer "
                       title="Delete"
