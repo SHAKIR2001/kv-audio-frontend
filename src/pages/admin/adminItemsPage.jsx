@@ -25,9 +25,9 @@ export default function AdminItemsPage() {
   
   function handleDelete(key){
     if(window.confirm( "Are you sure you want to delete this product?")){
-      setItems(items.filter( (item)=>item.key !== key)) //doubt
+      setItems(items.filter( (item)=>item.key !== key)) //check delete key(item.key) itku uqual illaadha key iruppadhe mattum shows seidhal 
       const token = localStorage.getItem("token")
-      axios.delete(`"http://localhost:3000//api/products/${key}`,{
+      axios.delete(`http://localhost:3000//api/products/${key}`,{
         headers : { Authorization: `Bearer ${token}`},
 
       }).then(
