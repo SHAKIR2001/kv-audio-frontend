@@ -10,6 +10,9 @@ export default function AdminItemsPage() {
   const [itemsLoaded, setItemsLoaded] = useState(false)
 
   useEffect(() => {
+    if(!itemsLoaded){
+      
+    }
     const token = localStorage.getItem("token");
 
     axios
