@@ -22,7 +22,7 @@ export default function AdminItemsPage() {
       .catch(() => {
         toast.error("Cannot find the items");
       });
-  }, []);
+  }, [itemsLoaded]);
   
   function handleDelete(key){
     if(window.confirm( "Are you sure you want to delete this product?")){
