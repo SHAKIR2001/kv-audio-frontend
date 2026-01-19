@@ -25,7 +25,7 @@ export default function AdminItemsPage() {
   
   function handleDelete(key){
     if(window.confirm( "Are you sure you want to delete this product?")){
-      setItems(items.filter( (item)=>item.key !== key))
+      setItems(items.filter( (item)=>item.key !== key)) //doubt
       const token = localStorage.getItem("token")
       axios.delete(`"http://localhost:3000//api/products/${key}`,{
         headers : { Authorization: `Bearer ${token}`},
