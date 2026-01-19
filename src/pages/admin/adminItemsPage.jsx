@@ -1,162 +1,109 @@
-const sampleArr = [
-  {
-    key: "AUD-JBL-001",
-    name: "JBL Go 3 Portable Speaker",
-    price: 2250,
-    category: "Audio",
-    dimensions: "8.6cm x 6.9cm x 4cm",
-    description: "Compact portable Bluetooth speaker with powerful sound and punchy bass.",
-    availability: "Availabile",
-    image: [
-      "https://m.media-amazon.com/images/I/713TUYjagQL._AC_SY300_SX300_QL70_FMwebp_.jpg"
-    ]
-  },
-  {
-    key: "AUD-SONY-002",
-    name: "Sony MDR-ZX110 Headphones",
-    price: 4500,
-    category: "Audio",
-    dimensions: "19cm x 17cm x 6cm",
-    description: "Lightweight on-ear headphones with dynamic sound and comfortable design.",
-    availability: "Availabile",
-    image: [
-      "https://m.media-amazon.com/images/I/51UQJQzZrOL._AC_SY300_SX300_.jpg"
-    ]
-  },
-  {
-    key: "LGT-LED-003",
-    name: "RGB LED Strip Light",
-    price: 1800,
-    category: "Lights",
-    dimensions: "5m length",
-    description: "Multi-color RGB LED strip with remote control, ideal for room decoration.",
-    availability: "Availabile",
-    image: [
-      "https://m.media-amazon.com/images/I/61QkK7z1UHL._AC_SY300_SX300_.jpg"
-    ]
-  },
-  {
-    key: "AUD-MIC-004",
-    name: "USB Condenser Microphone",
-    price: 6200,
-    category: "Audio",
-    dimensions: "15cm x 5cm",
-    description: "Plug-and-play USB microphone suitable for streaming, recording, and meetings.",
-    availability: "Availabile",
-    image: [
-      "https://m.media-amazon.com/images/I/61CGHv6kmWL._AC_SY300_SX300_.jpg"
-    ]
-  },
-  {
-    key: "LGT-RING-005",
-    name: "LED Ring Light 10 Inch",
-    price: 5200,
-    category: "Lights",
-    dimensions: "10 inch diameter",
-    description: "Adjustable brightness LED ring light perfect for video calls and photography.",
-    availability: "Availabile",
-    image: [
-      "https://m.media-amazon.com/images/I/61q4M0ZKZyL._AC_SY300_SX300_.jpg"
-    ]
-  }
-];
-
 import { useState, useEffect } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import axios from "axios";
 import toast from "react-hot-toast";
-export default function AdminItemsPage(){
 
-    const [items, setItems] = useState(sampleArr);
+export default function AdminItemsPage() {
+  const [items, setItems] = useState([]);
 
-    useEffect( ()=>{
-      const token = localStorage.getItem("token")
-      axios.get("http://localhost:3000/api/products", {headers:{"Authorization": `Bearer ${token}`}}).then((res)=>{
-        setItems(res.data)
-      }).catch((err)=>{
-          toast.error("Cannot find the items")
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get("http://localhost:3000/api/products", {
+        headers: { Authorization: `Bearer ${token}` },
       })
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch(() => {
+        toast.error("Cannot find the items");
+      });
+  }, []);
 
-    },[])
+  return (
+    <div className="w-full min-h-screen bg-gray-100 p-6 relative">
 
+      {/* Page Title */}
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">
+        Product Management
+      </h1>
 
+      {/* Table Card */}
+      <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
 
-    return(
-        <div className="w-full h-full relative">
-            <table>
-                <thead>
-                 <tr>
-                    <th>Key</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>Dimensions</th>
-                    <th>availability</th>
-                 </tr>
-                </thead>
+        <table className="w-full border-collapse">
+          <thead className="bg-gray-200 text-gray-700 text-sm">
+            <tr>
+              <th className="px-4 py-3 text-left">Key</th>
+              <th className="px-4 py-3 text-left">Name</th>
+              <th className="px-4 py-3 text-left">Price (LKR)</th>
+              <th className="px-4 py-3 text-left">Category</th>
+              <th className="px-4 py-3 text-left">Dimensions</th>
+              <th className="px-4 py-3 text-left">Availability</th>
+              <th className="px-4 py-3 text-center">Actions</th>
+            </tr>
+          </thead>
 
-                <tbody>
-                    {
-                        items.map((product,index)=>{      //uniq key ondru thevai paduwathal aray in index value ei eduththal 
-                            console.log(product)
-                            return(
-                                <tr key = {index}>                {/*index kudukkaavittalum work pannum but sometimes may be errs waralaam so ithu best practice*/}
-                                    <td>{product.key}</td>
-                                    <td>{product.name}</td>
-                                    <td>{product.price}</td>
-                                    <td>{product.category}</td>
-                                    <td>{product.dimensions}</td>
-                                    <td>{product.availability ? "Available" : "Not Available"}</td>
-                                </tr>
-                            )
-                        })
-                    }
+          <tbody>
+            {items.map((product, index) => (
+              <tr
+                key={index}
+                className="border-t hover:bg-gray-50 transition"
+              >
+                <td className="px-4 py-3 text-sm">{product.key}</td>
+                <td className="px-4 py-3 text-sm font-medium">
+                  {product.name}
+                </td>
+                <td className="px-4 py-3 text-sm">{product.price}</td>
+                <td className="px-4 py-3 text-sm">{product.category}</td>
+                <td className="px-4 py-3 text-sm">{product.dimensions}</td>
+                <td className="px-4 py-3 text-sm">
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                      product.availability
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {product.availability ? "Available" : "Not Available"}
+                  </span>
+                </td>
 
+                {/* Actions */}
+                <td className="px-4 py-3 text-center">
+                  <div className="flex justify-center gap-3">
 
-                
+                    {/* Edit */}
+                    <button
+                      className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition cursor-pointer"
+                      title="Edit"
+                    >
+                      <FiEdit2 />
+                    </button>
 
-                </tbody>
-            </table>
+                    {/* Delete */}
+                    <button
+                      className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition cursor-pointer"
+                      title="Delete"
+                    >
+                      <FiTrash2 />
+                    </button>
 
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-           <Link to="/admin/items/add">
-                 <CiCirclePlus className="text-[100px] absolute bottom-2 right-2 hover:text-red-900 cursor-pointer "/>
-        
-            </Link>
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        </div>
-    )
-
+      {/* Add Item Floating Button */}
+      <Link to="/admin/items/add">
+        <CiCirclePlus className="text-[80px] text-purple-600 hover:text-purple-800 cursor-pointer fixed bottom-6 right-6 drop-shadow-lg" />
+      </Link>
+    </div>
+  );
 }
