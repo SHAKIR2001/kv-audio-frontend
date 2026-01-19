@@ -107,7 +107,7 @@ export default function AdminItemsPage(){
                                     <td>{product.price}</td>
                                     <td>{product.category}</td>
                                     <td>{product.dimensions}</td>
-                                    <td>{product.availability}</td>
+                                    <td>{product.availability ? "Available" : "Not Available"}</td>
                                 </tr>
                             )
                         })
