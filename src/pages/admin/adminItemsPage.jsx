@@ -64,9 +64,11 @@ const sampleArr = [
 import { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import axios from "axios";
 export default function AdminItemsPage(){
 
     const [items, setItems] = useState(sampleArr);
+    
 
     return(
         <div className="w-full h-full relative">
