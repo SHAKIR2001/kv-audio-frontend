@@ -30,7 +30,15 @@ export default function AdminItemsPage() {
       axios.delete(`"http://localhost:3000//api/products/${key}`,{
         headers : { Authorization: `Bearer ${token}`},
 
-      })
+      }).then(
+        (res)=>{
+          console.log(res.data)
+        }
+      ).catch(
+        (err)=>{
+          console.log(err)
+        }
+      )
 
     }
   }
