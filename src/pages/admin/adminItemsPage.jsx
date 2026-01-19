@@ -85,7 +85,9 @@ export default function AdminItemsPage() {
                     </button>
 
                     {/* Delete */}
-                    <button
+                    <button onClick={()=>{
+                      handleDelete()
+                    }}
                       className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition cursor-pointer "
                       title="Delete"
                     >
