@@ -68,6 +68,13 @@ import axios from "axios";
 export default function AdminItemsPage(){
 
     const [items, setItems] = useState(sampleArr);
+
+    const token = localStorage.getItem("token")
+    axios.get("http://localhost:3000/api/products", {headers:{"Authorization": `Bearer ${token}`}}).then((res)=>{
+      console.log(res.data)
+    }).catch( (err)=>{
+      console.log(err)
+    })
     
 
     return(
