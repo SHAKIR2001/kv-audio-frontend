@@ -78,7 +78,7 @@ export default function AdminItemsPage() {
 
                     {/* Edit */}
                     <button
-                      className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition "
+                      className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition cursor-pointer"
                       title="Edit"
                     >
                       <FiEdit2 />
