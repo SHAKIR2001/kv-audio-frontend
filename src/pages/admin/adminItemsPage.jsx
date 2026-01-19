@@ -78,7 +78,7 @@ export default function AdminItemsPage() {
 
                     {/* Edit */}
                     <button
-                      className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition cursor-pointer"
+                      className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition "
                       title="Edit"
                     >
                       <FiEdit2 />
@@ -86,7 +86,7 @@ export default function AdminItemsPage() {
 
                     {/* Delete */}
                     <button
-                      className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition cursor-pointer"
+                      className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition "
                       title="Delete"
                     >
                       <FiTrash2 />
