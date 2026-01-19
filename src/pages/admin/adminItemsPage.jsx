@@ -13,8 +13,7 @@ export default function AdminItemsPage() {
     if(!itemsLoaded){
      const token = localStorage.getItem("token");
 
-    axios
-      .get("http://localhost:3000/api/products", {
+    axios.get("http://localhost:3000/api/products", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
