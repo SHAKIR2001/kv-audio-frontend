@@ -82,6 +82,7 @@ export default function UpdateProduct() {
               Product Key
             </label>
             <input
+              disabled
               type="text"
               placeholder="e.g. JBL-AUD-001"
               value={productKey}
