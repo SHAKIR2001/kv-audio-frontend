@@ -54,7 +54,7 @@ export default function AdminItemsPage() {
 
   return (
     <div className="w-full min-h-screen bg-gray-100 p-6 relative flex flex-col  items-center">
-
+      <div className="border-b w-[100px] h-[100px] bg-red-900"></div>
       {/* Page Title */}
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
         Product Management
