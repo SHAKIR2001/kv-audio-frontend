@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 export default function AdminItemsPage() {
   const [items, setItems] = useState([]);
   const [itemsLoaded, setItemsLoaded] = useState(false)
+  const navigate = useNavigate();
+
   
   useEffect(() => {
     if(!itemsLoaded){
@@ -108,7 +110,7 @@ export default function AdminItemsPage() {
                   <div className="flex justify-center gap-3">
 
                     {/* Edit */}
-                    <button
+                    <button onClick={()=>{navigate("admin/items/edit")}}
                       className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition cursor-pointer"
                       title="Edit"
                     >
