@@ -8,7 +8,7 @@ import { useNavigate , useLocation} from "react-router-dom";
 export default function UpdateProduct() {
   const location = useLocation()  
   //console.log(location)
-  const [productKey, setProductKey] = useState("");
+  const [productKey, setProductKey] = useState(location.state.key);
   const [productName, setproductName] = useState("");
   const [productPrice, setproductPrice] = useState(0);
   const [productCatagorie, setProductCatagorie] = useState("");
