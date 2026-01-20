@@ -1,10 +1,12 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useLocation} from "react-router-dom";
+
 
 
 export default function UpdateProduct() {
+  const location = useLocation()  
   const [productKey, setProductKey] = useState("");
   const [productName, setproductName] = useState("");
   const [productPrice, setproductPrice] = useState(0);
