@@ -64,7 +64,7 @@ export default function UpdateProduct() {
 
         {/* Title */}
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          Add New Product
+          Update Item
         </h1>
 
         {/* Form */}
