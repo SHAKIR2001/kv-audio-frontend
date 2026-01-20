@@ -62,7 +62,7 @@ export default function AdminItemsPage() {
       
 
       {/* Table Card */}
-      <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
+      {itemsLoaded &&<div className="bg-white rounded-xl shadow-lg overflow-x-auto">
 
         <table className="w-full border-collapse">
           <thead className="bg-gray-200 text-gray-700 text-sm">
@@ -130,7 +130,7 @@ export default function AdminItemsPage() {
             ))}
           </tbody>
         </table>
-      </div>
+      </div>}
 
       {/* Add Item Floating Button */}
       <Link to="/admin/items/add">
