@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function AddProduct() {
+export default function UpdateProduct() {
   const [productKey, setProductKey] = useState("");
   const [productName, setproductName] = useState("");
   const [productPrice, setproductPrice] = useState(0);
