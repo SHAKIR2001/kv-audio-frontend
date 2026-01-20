@@ -77,7 +77,7 @@ export default function AdminItemsPage() {
           </thead>
 
           <tbody>
-            {items.map((product, index) => (
+            {items.map((product, index) => (  //"product" just the name of the current element you’re iterating over even we can use "shakir" then shakir.key like that
               <tr
                 key={index}
                 className="border-t hover:bg-gray-50 transition"
