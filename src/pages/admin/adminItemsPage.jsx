@@ -110,7 +110,7 @@ export default function AdminItemsPage() {
                   <div className="flex justify-center gap-3">
 
                     {/* Edit */}
-                    <button onClick={()=>{navigate(`/admin/items/edit`)}}
+                    <button onClick={()=>{navigate("/admin/items/edit")}}
                       className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition cursor-pointer"
                       title="Edit"
                     >
