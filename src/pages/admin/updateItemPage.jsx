@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 export default function UpdateProduct() {
@@ -10,6 +11,7 @@ export default function UpdateProduct() {
   const [productCatagorie, setProductCatagorie] = useState("");
   const [productDescription, setproductDescription] = useState("");
   const [productDimensions, setproductDimensions] = useState("");
+  const navigate = useNavigate();
 
 
   async function handleAddItem() {
