@@ -79,7 +79,7 @@ export default function AdminItemsPage() {
           <tbody>
             {items.map((product, index) => (  //"product" just the name of the current element you’re iterating over even we can use "shakir" then shakir.key like that
               <tr
-                key={index}
+                key={index} //index is the position number of the current element while looping the array
                 className="border-t hover:bg-gray-50 transition"
               >
                 <td className="px-4 py-3 text-sm">{product.key}</td>
