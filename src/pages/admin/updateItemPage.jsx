@@ -15,6 +15,8 @@ export default function UpdateProduct() {
   const [productDimensions, setproductDimensions] = useState("");
   const navigate = useNavigate();
 
+  console.log(location)
+
 
   async function handleAddItem() {
   console.log(
