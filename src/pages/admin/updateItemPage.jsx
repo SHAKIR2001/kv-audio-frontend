@@ -12,7 +12,7 @@ export default function UpdateProduct() {
   const [productKey, setProductKey] = useState(location.state.key);
   const [productName, setproductName] = useState(location.state.name);
   const [productPrice, setproductPrice] = useState(location.state.price);
-  const [productCatagorie, setProductCatagorie] = useState(location.state.categorie);
+  const [productCatagorie, setProductCatagorie] = useState(location.state.category);
   const [productDescription, setproductDescription] = useState(location.state.description);
   const [productDimensions, setproductDimensions] = useState(location.state.dimensions);
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function UpdateProduct() {
 
   if (token) {
     try {
-      const result = await axios.put( "http://localhost:3000/api/products"+productKey,  // //make it put to update ; kurippita item in product key anuppudhal
+      const result = await axios.put("http://localhost:3000/api/products/"+productKey,  // //make it put to update ; kurippita item in product key anuppudhal
         {
           key: productKey, // backend(key) ← useState(productKey)
           name: productName,
