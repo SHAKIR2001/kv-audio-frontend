@@ -9,7 +9,7 @@ export default function UpdateProduct() {
   const location = useLocation()  
   //console.log(location)
 const product = location.state?.product;
-  const [productKey, setProductKey] = useState(location.state.key);
+  const [productKey, setProductKey] = useState(product.key);
   const [productName, setproductName] = useState(location.state.name);
   const [productPrice, setproductPrice] = useState(location.state.price);
   const [productCatagorie, setProductCatagorie] = useState(location.state.categorie);
