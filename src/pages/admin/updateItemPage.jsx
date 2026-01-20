@@ -7,6 +7,7 @@ import { useNavigate , useLocation} from "react-router-dom";
 
 export default function UpdateProduct() {
   const location = useLocation()  
+  //console.log(location)
   const [productKey, setProductKey] = useState("");
   const [productName, setproductName] = useState("");
   const [productPrice, setproductPrice] = useState(0);
@@ -15,7 +16,7 @@ export default function UpdateProduct() {
   const [productDimensions, setproductDimensions] = useState("");
   const navigate = useNavigate();
 
-  console.log(location)
+  
 
 
   async function handleAddItem() {
