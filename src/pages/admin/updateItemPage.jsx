@@ -34,8 +34,8 @@ export default function UpdateProduct() {
 
   if (token) {
     try {
-      const result = await axios.post(
-        "http://localhost:3000/api/products",
+      const result = await axios.put(  //make it put to update 
+        "http://localhost:3000/api/products"+productKey,  //kurippita item in product key anuppudhal
         {
           key: productKey, // backend(key) ← useState(productKey)
           name: productName,
