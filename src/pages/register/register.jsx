@@ -10,7 +10,7 @@ export default function RegisterPage() {
   const [phone, setPhone] = useState("");
 
   function handleSubmit(e) {
-    e.preventDefault();
+        
 
     // For now just checking values
     console.log({
