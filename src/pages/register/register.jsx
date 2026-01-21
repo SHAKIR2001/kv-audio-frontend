@@ -12,8 +12,7 @@ export default function RegisterPage() {
   function handleSubmit(e) {
     e.preventDefault();
 
-
-    // For now just checking values
+    // For just checking values
     console.log({
       firstName,
       lastName,
@@ -22,6 +21,10 @@ export default function RegisterPage() {
       address,
       phone,
     });
+
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/register`, )
+
+
   }
 
   return (
