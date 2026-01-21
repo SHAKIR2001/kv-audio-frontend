@@ -22,19 +22,19 @@ export default function Items() {
 
   return (
     <div className="w-full min-h-screen pt-[50px]">
-      {state === "loading" && (
+      {state === "loading" && 
         <div className="w-full flex justify-center items-center">
           <div className="w-[50px] h-[50px] border-4 border-t-green-500 rounded-full animate-spin" />
         </div>
-      )}
+      }
 
-      {state === "success" && (
+      {state === "success" && 
         <div className="w-full flex flex-wrap justify-center gap-6">
           {items.map((item) => (
             <ProductCard key={item.key} item={item} />
           ))}
         </div>
-      )}
+      }
     </div>
   );
 }
