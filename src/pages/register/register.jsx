@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./register.css";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState("");
@@ -9,6 +10,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+  const navigate = useNavigate;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -32,6 +34,7 @@ export default function RegisterPage() {
         phone : phone
     } ).then( (res)=>{
         console.log(res)
+        navigate("")
     }).catch( (err)=>{
         toast.error(err?.responce?.data?.error || "Error occured")
     })
