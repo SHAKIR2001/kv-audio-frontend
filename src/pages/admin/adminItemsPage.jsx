@@ -14,10 +14,10 @@ export default function AdminItemsPage() {
   
   useEffect(() => {
     if(!itemsLoaded){
-      
+
      const token = localStorage.getItem("token");
-     const backendUrl = import.meta.env.VITE_BACKEND_URL 
-     axios.get(`${backendUrl}/api/products`, {
+     
+     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
