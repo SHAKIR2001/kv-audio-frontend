@@ -30,8 +30,8 @@ export default function Items() {
 
       {state === "success" && 
         <div className="w-full flex flex-wrap justify-center gap-6">
-          {items.map((item) => (
-            <ProductCard key={item.key} item={item} />
+          {items.map((item) => ( //right side item is just a parameter name we pass items to the item
+            <ProductCard key={item.key} item={item} />  //left side item is a prop we transfer the item details to productCard.jsx through the props call item define the 
           ))}
         </div>
       }
