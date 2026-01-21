@@ -23,7 +23,7 @@ export default function Items() {
   return (
     <div className="w-full min-h-screen pt-[50px]">
       {state === "loading" && 
-        <div className="w-full flex justify-center items-center">
+        <div className="w-full h-screen flex justify-center items-center">
           <div className="w-[50px] h-[50px] border-4 border-t-green-500 rounded-full animate-spin" />
         </div>
       }
