@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 
 export default function AdminItemsPage() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]); 
   const [itemsLoaded, setItemsLoaded] = useState(false)
   const navigate = useNavigate();
 
