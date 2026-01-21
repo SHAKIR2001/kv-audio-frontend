@@ -1,51 +1,40 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { useEffect, useState } from "react";
+import axios from "axios";
 import toast from "react-hot-toast";
-export default function Items(){
+import ProductCard from "../../components/productCard";
 
-    const [state, setState] = useState("loading") //loading , success, error
-    const [items , setItems] = useState([]);
+export default function Items() {
+  const [state, setState] = useState("loading"); // loading | success | error
+  const [items, setItems] = useState([]);
 
-    useEffect( ()=>{
-        
-      if(state == "loading"){
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/products`) //dont get any tokens bcs prodcuts can be view by anyone
+      .then((res) => {
+        setItems(res.data);
+        setState("success");
+      })
+      .catch((err) => {
+        toast.error(err?.response?.data?.error || "Error occurred");
+        setState("error");
+      });
+  }, []);
 
-           axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products`).then( (res)=>{ //prodcuts can be view by anyone thats why i didnt get any token 
-            console.log(res.data)
-           setItems(res.data)
-           setState("success")
-        }).catch( (err)=>{
-           toast.error(err?.response?.data?.error || "Erorr occured")
-           setState("error")
-
-        }) 
-     }
-
-    },[])
-
-
-
-
-    return(
-        <div className="w-full h-full flex flex-wrap justify-center  pt-[50px]">
-             {state=="loading" && //if state is == loading it means its true then only this div shown
-             <div className="h-full w-full  flex justify-center items-center">
-                <div className="w-[50px] h-[50px] border-4 border-t-green-500 rounded-full animate-spin"></div>
-            
-            </div>}
-            {state=="success"&& 
-            items.map( (item)=>{
-              return(
-                <h1 key={item.key}>{item.name}</h1>
-              )
-                
-            })
-                
-            
-
-            }
-        
-
+  return (
+    <div className="w-full min-h-screen pt-[50px]">
+      {state === "loading" && (
+        <div className="w-full flex justify-center items-center">
+          <div className="w-[50px] h-[50px] border-4 border-t-green-500 rounded-full animate-spin" />
         </div>
-    )
+      )}
+
+      {state === "success" && (
+        <div className="w-full flex flex-wrap justify-center gap-6">
+          {items.map((item) => (
+            <ProductCard key={item._id ?? item.id ?? item.name} item={item} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
