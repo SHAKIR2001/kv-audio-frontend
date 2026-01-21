@@ -26,7 +26,8 @@ export default function Items(){
 
 
     return(
-        <div className="w-full h-full ">
+        <div className="w-full h-full flex flex-wrap">
+            dsfas
 
         </div>
     )
