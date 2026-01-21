@@ -20,7 +20,7 @@ export default function LoginPage(){
         }).then(
             (res)=>{
                 console.log(res)
-                toast.success("Login Success, Welcom "+res.data.user.firstName)
+                toast.success("Login Success, Welcome "+res.data.user.firstName)
                 const user = res.data.user //identify this from browser console(res.data.user)
                 localStorage.setItem("token", res.data.token) //store the key and value in the  cashe table(token)
                  
