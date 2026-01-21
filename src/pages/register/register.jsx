@@ -27,7 +27,7 @@ export default function RegisterPage() {
       phone,
     });
 
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user`,{
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users`,{
         email : email,
         firstName : firstName,
         lastName : lastName,
