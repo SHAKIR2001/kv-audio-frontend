@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import toast from "react-hot-toast";
 export default function Items(){
 
     const [state, setState] = useState("loading") //loading , success, error
@@ -12,7 +13,9 @@ export default function Items(){
            setItems(res.data)
            setState("success")
         }).catch( (err)=>{
-          console.log(err?.responce?.data?.error || "Erorr occured")
+           toast.error(err?.response?.data?.error || "Erorr occured")
+           setState("error")
+
         }) 
      }
 
