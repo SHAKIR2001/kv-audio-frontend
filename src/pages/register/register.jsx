@@ -29,7 +29,9 @@ export default function RegisterPage() {
         password : password,
         address : address,
         phone : phone
-    } )
+    } ).then( ()=>{
+        
+    })
 
 
   }
