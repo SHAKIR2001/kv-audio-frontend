@@ -33,7 +33,7 @@ export default function RegisterPage() {
     } ).then( (res)=>{
         console.log(res)
     }).catch( (err)=>{
-        
+        toast.error(err.responce.data.error)
     })
 
 
