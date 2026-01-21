@@ -33,8 +33,8 @@ export default function RegisterPage() {
         address : address,
         phone : phone
     } ).then( (res)=>{
-        console.log(res)
-        navigate("")
+        //console.log(res)
+        navigate("/login")
     }).catch( (err)=>{
         toast.error(err?.responce?.data?.error || "Error occured")
     })
