@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./register.css";
+import toast from "react-hot-toast";
 
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState("");
@@ -32,7 +33,7 @@ export default function RegisterPage() {
     } ).then( (res)=>{
         console.log(res)
     }).catch( (err)=>{
-        console.log(err)
+        
     })
 
 
