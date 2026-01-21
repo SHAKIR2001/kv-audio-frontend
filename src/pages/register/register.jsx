@@ -29,8 +29,10 @@ export default function RegisterPage() {
         password : password,
         address : address,
         phone : phone
-    } ).then( ()=>{
-        
+    } ).then( (res)=>{
+        console.log(res)
+    }).catch( (err)=>{
+        console.log(err)
     })
 
 
