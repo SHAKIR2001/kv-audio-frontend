@@ -31,7 +31,7 @@ export default function Items() {
       {state === "success" && (
         <div className="w-full flex flex-wrap justify-center gap-6">
           {items.map((item) => (
-            <ProductCard key={item._id ?? item.id ?? item.name} item={item} />
+            <ProductCard key={item.key} item={item} />
           ))}
         </div>
       )}
