@@ -27,7 +27,7 @@ export default function AddProduct() {
   if (token) {
     try {
       const result = await axios.post(
-        "http://localhost:3000/api/products",
+        `${import.meta.env.VITE_BACKEND_URL}/api/products`,
         {
           key: productKey, // backend(key) ← useState(productKey)
           name: productName,
