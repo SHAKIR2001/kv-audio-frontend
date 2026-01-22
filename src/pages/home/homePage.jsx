@@ -9,7 +9,7 @@ export default function HomePage(){
     return(
     <>
         <Header/>
-        <div className="h-[calc(100vh-100px)] w-full">
+        <div className="h-[calc(100vh-100px)] bg-primary w-full">
            <Routes path="/">
                 <Route path="/" element={<Home/>}/>
                 <Route path="/contact" element={<Contact/>}/>
