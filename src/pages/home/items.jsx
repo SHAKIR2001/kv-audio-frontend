@@ -8,7 +8,8 @@ export default function Items() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    axios
+    if(state == "loading"){
+      axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/products`) //dont get any tokens bcs prodcuts can be view by anyone
       .then((res) => {
         setItems(res.data);
@@ -18,6 +19,8 @@ export default function Items() {
         toast.error(err?.response?.data?.error || "Error occurred");
         setState("error");
       });
+    }
+
   }, []);
 
   return (
