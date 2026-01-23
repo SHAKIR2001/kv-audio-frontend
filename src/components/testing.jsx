@@ -7,6 +7,7 @@ export default function Testing() {
     <div className="w-full h-screen flex justify-center items-center flex-col gap-4">
       <input
         type="file"
+        multiple //can upload multiple images
         className="
           cursor-pointer
           text-sm
@@ -19,7 +20,7 @@ export default function Testing() {
           file:cursor-pointer
           hover:file:bg-gray-50
         "
-        onChange={ (e)=>{console.log(e)}}
+        onChange={ (e)=>{console.log(e.target.files)}}
       />
 
       <button
