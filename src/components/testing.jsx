@@ -20,7 +20,8 @@ export default function Testing() {
           file:cursor-pointer
           hover:file:bg-gray-50
         "
-        onChange={ (e)=>{console.log(e.target.files)}}
+        value = {file}
+        onChange={ (e)=>{setFile(e.target.files[0])}}
       />
 
       <button
