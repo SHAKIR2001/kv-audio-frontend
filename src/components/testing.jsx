@@ -6,6 +6,7 @@ export default function Testing(){
     return(
         <div className="w-full h-screen flex justify-center items-center flex-col">
             
+            <input type="file"/>
    
 
         </div>
