@@ -6,7 +6,7 @@ const supabase_url = "https://wzqkwvblzpxdxfmjstie.supabase.co"
 const supabase = createClient(supabase_url, anon_key )
 
 export default function mediaUpload(file){
-    const timesStamp = new data().getTime(); //get the current time
+    const timesStamp = new Date().getTime(); //get the current time
     const fileName = timesStamp+file.name; //in supabase we cant save files with the same name so we add currentTime infront of the file name
 
     supabase.storage.from("images").upload(fileName, file, { //images : bucket name ; "filr : parameter name from the funtion mediaUpload; wendiya name"
