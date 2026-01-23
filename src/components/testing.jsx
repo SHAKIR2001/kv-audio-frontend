@@ -20,7 +20,7 @@ export default function Testing() {
           file:cursor-pointer
           hover:file:bg-gray-50
         "
-        value = {file}
+        
         onChange={ (e)=>{setFile(e.target.files[0])}}
       />
 
