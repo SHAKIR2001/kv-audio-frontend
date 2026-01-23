@@ -5,7 +5,7 @@ export default function Testing() {
   const [file, setFile] = useState(null);
 
   function uploadFile(){
-    mediaUpload(file).then( (url)=>{
+    mediaUpload(file).then( (url)=>{  //indha function moolam upload seidha image in URL varum 
         console.log(url)
     })
   }
