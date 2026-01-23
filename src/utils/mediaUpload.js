@@ -10,6 +10,7 @@ export default function mediaUpload(file){
         cacheControl : '3600',
         upsert: false
     }).then( (res)=>{
-        const publicUrl = supabase.storage.from("images").getPublicUrl(file.name)
+        const publicUrl = supabase.storage.from("images").getPublicUrl(file.name).data.publicUrl;
+        console.log(publicUrl)
     })
 }
