@@ -6,6 +6,13 @@ const supabase_url = "https://wzqkwvblzpxdxfmjstie.supabase.co"
 const supabase = createClient(supabase_url, anon_key )
 
 export default function mediaUpload(file){
+
+    return new Promise( (resolve, reject)=>{
+
+    if ( file == null){
+        reject("No file selected")
+    }
+
     const timesStamp = new Date().getTime(); //get the current time
     const fileName = timesStamp+file.name; //in supabase we cant save files with the same name so we add currentTime infront of the file name
 
@@ -15,6 +22,11 @@ export default function mediaUpload(file){
     }).then( (res)=>{
 
         const publicUrl = supabase.storage.from("images").getPublicUrl(fileName).data.publicUrl; //images : buacket name ; file.name: related file/image name;   upload ahina image in Url ei eduththal 
-        console.log(publicUrl)
+        resolve(publicUrl)
+    }).catch( ()=>{
+        reject("Error uploading file")
     })
+    })
+
+
 }
