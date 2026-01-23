@@ -1,7 +1,12 @@
 import { useState } from "react"
 
 export default function Testing() {
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState(null);
+
+  function uploadFile(){
+    console.log(file)
+  }
+
 
   return (
     <div className="w-full h-screen flex justify-center items-center flex-col gap-4">
@@ -21,7 +26,7 @@ export default function Testing() {
           hover:file:bg-gray-50
         "
         
-        onChange={ (e)=>{setFile(e.target.files[0])}}
+        onChange={ (e)=>{setFile(e.target.files[0])}} 
       />
 
       <button
@@ -32,6 +37,7 @@ export default function Testing() {
           cursor-pointer
           hover:bg-blue-600
         "
+        onClick={uploadFile}
         type="button"
       >
         Upload
