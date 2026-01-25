@@ -2,6 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 export default function AddProduct() {
   const [productKey, setProductKey] = useState("");
