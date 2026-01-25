@@ -25,7 +25,7 @@ export default function AddProduct() {
     }
 
     Promise.all(promises).then( (result)=>{
-
+        console.log(result)
     }).catch( (err)=>{
       toast.error(err)
     })
