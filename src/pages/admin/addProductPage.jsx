@@ -24,14 +24,6 @@ export default function AddProduct() {
       promises.push(promise)
     }
 
-    Promise.all(promises).then( (result)=>{
-        console.log(result)
-    }).catch( (err)=>{
-      toast.error(err)
-    })
-
-    
-
   console.log(
     productKey,
     productName,
@@ -41,12 +33,19 @@ export default function AddProduct() {
     productDimensions
   );
 
-
-/*
   const token = localStorage.getItem("token"); // get token from localStorage
 
   if (token) {
     try {
+
+     /*  Promise.all(promises).then( (result)=>{  //Promises.all enbadhu ore thadaweyyil pala promise halai run seiyya ull predefine js thing
+        console.log(result)
+      }).catch( (err)=>{
+      toast.error(err)
+      }) */
+
+      const imageUrls = await Promise.all(promises);
+
       const result = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/products`,
         {
@@ -72,7 +71,7 @@ export default function AddProduct() {
     }
   } else {
     toast.error("You are not authorized to add items");
-  }*/
+  }
 }
 
   return (
