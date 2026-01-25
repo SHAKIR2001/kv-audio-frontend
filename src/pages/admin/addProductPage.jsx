@@ -10,6 +10,7 @@ export default function AddProduct() {
   const [productCatagorie, setProductCatagorie] = useState("");
   const [productDescription, setproductDescription] = useState("");
   const [productDimensions, setproductDimensions] = useState("");
+  const [ProductImages, setProductImages] = useState([]);
   const navigate = useNavigate();
 
   async function handleAddItem() {
