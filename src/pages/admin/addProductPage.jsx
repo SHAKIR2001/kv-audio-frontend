@@ -15,6 +15,16 @@ export default function AddProduct() {
   const navigate = useNavigate();
 
   async function handleAddItem() {
+   
+    const promises = []
+
+    for(i=0; i<ProductImages.length; i++){
+      const promise = mediaUpload(ProductImages[i])
+      promises.push(promise)
+    }
+
+    
+
   console.log(
     productKey,
     productName,
@@ -24,6 +34,8 @@ export default function AddProduct() {
     productDimensions
   );
 
+
+/*
   const token = localStorage.getItem("token"); // get token from localStorage
 
   if (token) {
@@ -53,7 +65,7 @@ export default function AddProduct() {
     }
   } else {
     toast.error("You are not authorized to add items");
-  }
+  }*/
 }
 
   return (
