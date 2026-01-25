@@ -22,6 +22,10 @@ export default function AddProduct() {
     for(i=0; i<ProductImages.length; i++){
       const promise = mediaUpload(ProductImages[i])
       promises.push(promise)
+      if( i == 5){
+        toast.error("You can upload only 4 images at a time");
+        break;
+      }
     }
 
   console.log(
