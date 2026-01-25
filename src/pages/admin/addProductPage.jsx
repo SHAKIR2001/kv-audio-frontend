@@ -171,7 +171,7 @@ export default function AddProduct() {
                file:cursor-pointer
                hover:file:bg-gray-50
                "
-                         
+               onChange={(e)=>{setProductImages(e.target.files)}}         
       
             />
 
