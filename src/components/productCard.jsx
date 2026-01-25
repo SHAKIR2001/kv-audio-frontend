@@ -5,7 +5,7 @@ export default function ProductCard(props) {
     <div className="w-72 bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden flex flex-col">
       {/* Product Image */}
       <img
-        src={item.image} //get the image from the url that given to the backend
+        src={item.image[0]} // can uplaod multiple images but in product card only shows the 1st image (image store as an array so 0 index of the aaray is shows in product card)
         alt={item.name}
         className="w-full h-44 object-contain bg-gray-100"
       />

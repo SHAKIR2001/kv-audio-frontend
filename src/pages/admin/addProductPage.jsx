@@ -19,7 +19,7 @@ export default function AddProduct() {
    
     const promises = []
 
-    for(i=0; i<ProductImages.length; i++){
+    for(let i=0; i<ProductImages.length; i++){
       const promise = mediaUpload(ProductImages[i])
       promises.push(promise)
       if( i == 5){
