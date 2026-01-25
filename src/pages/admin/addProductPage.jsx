@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import mediaUpload from "../../utils/mediaUpload";
+import toast from "react-hot-toast";
 
 export default function AddProduct() {
   const [productKey, setProductKey] = useState("");
@@ -22,6 +23,12 @@ export default function AddProduct() {
       const promise = mediaUpload(ProductImages[i])
       promises.push(promise)
     }
+
+    Promise.all(promises).then( (result)=>{
+
+    }).catch( (err)=>{
+      toast.error(err)
+    })
 
     
 
