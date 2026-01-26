@@ -2,6 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate , useLocation} from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 
 
@@ -10,17 +11,36 @@ export default function UpdateProduct() {
   //console.log(location)
   
   const [productKey, setProductKey] = useState(location.state.key);
-  const [productName, setproductName] = useState(location.state.name);
-  const [productPrice, setproductPrice] = useState(location.state.price);
+  const [productName, setProductName] = useState(location.state.name);
+  const [productPrice, setProductPrice] = useState(location.state.price);
   const [productCatagorie, setProductCatagorie] = useState(location.state.category);
-  const [productDescription, setproductDescription] = useState(location.state.description);
-  const [productDimensions, setproductDimensions] = useState(location.state.dimensions);
+  const [productDescription, setProductDescription] = useState(location.state.description);
+  const [productDimensions, setProductDimensions] = useState(location.state.dimensions);
+  const [productImages,setProductImages] = useState([]);
   const navigate = useNavigate();
 
   
 
 
-  async function handleAddItem() {
+  async function handleUpdateItem() {
+
+  let updatingImages = location.state.image
+
+  if(productImages.length > 0){
+  
+        const promises = []
+    
+        for(let i=0; i<productImages.length; i++){
+          const promise = mediaUpload(productImages[i])
+          promises.push(promise)
+
+        }
+
+        updatingImages = await Promise.all(promises)
+  }
+
+
+
   console.log(
     productKey,
     productName,
@@ -34,7 +54,7 @@ export default function UpdateProduct() {
 
   if (token) {
     try {
-      const result = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/products/"${productKey}`,  // //make it put to update ; kurippita item in product key anuppudhal
+      const result = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/products/${productKey}`,  // //make it put to update ; kurippita item in product key anuppudhal
         {
           key: productKey, // backend(key) ← useState(productKey)
           name: productName,
@@ -42,6 +62,7 @@ export default function UpdateProduct() {
           category: productCatagorie,
           dimensions: productDimensions,
           description: productDescription,
+          image : updatingImages,
         },
         {
           headers: {
@@ -99,7 +120,7 @@ export default function UpdateProduct() {
               type="text"
               placeholder="Product name"
               value={productName}
-              onChange={(e) => setproductName(e.target.value)}
+              onChange={(e) => setProductName(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -112,7 +133,7 @@ export default function UpdateProduct() {
             <input
               type="number"
               value={productPrice}
-              onChange={(e) => setproductPrice(e.target.value)}
+              onChange={(e) => setProductPrice(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -142,7 +163,7 @@ export default function UpdateProduct() {
               type="text"
               placeholder="10cm x 8cm x 5cm"
               value={productDimensions}
-              onChange={(e) => setproductDimensions(e.target.value)}
+              onChange={(e) => setProductDimensions(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -156,13 +177,34 @@ export default function UpdateProduct() {
               rows="3"
               placeholder="Short product description"
               value={productDescription}
-              onChange={(e) => setproductDescription(e.target.value)}
+              onChange={(e) => setProductDescription(e.target.value)}
               className="w-full px-3 py-2 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
+          {/* Images */}
+          <div>
+            <input type="file"
+              multiple
+              className="
+               cursor-pointer
+               text-sm
+               file:mr-3
+               file:rounded
+               file:border file:border-gray-400
+               file:bg-white
+               file:px-3 file:py-1.5
+               file:text-sm
+               file:cursor-pointer
+               hover:file:bg-gray-50
+               "
+               onChange={(e)=>{setProductImages(e.target.files)}}         
+      
+            />
+          </div>
+
           {/* Button */}
-          <button onClick={handleAddItem}  className="mt-4 h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold">
+          <button onClick={handleUpdateItem}  className="mt-4 h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold">
             Update
           </button>
 
