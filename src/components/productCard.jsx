@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function ProductCard(props) {
   const item = props.item; //get the item value through the props (given by the item.jsx)
 
@@ -36,12 +37,11 @@ export default function ProductCard(props) {
             </span>
           </div>
 
-          <button
+          <Link to={"/product/"+item.key}
             className="w-full h-10 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold text-sm"
-            disabled={!item.availability}
           >
-            {item.availability ? "Add to Cart" : "Unavailable"}
-          </button>
+            View Details
+          </Link>
         </div>
       </div>
     </div>
