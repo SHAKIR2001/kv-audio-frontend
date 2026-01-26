@@ -32,10 +32,7 @@ export default function UpdateProduct() {
         for(let i=0; i<ProductImages.length; i++){
           const promise = mediaUpload(ProductImages[i])
           promises.push(promise)
-          if( i == 5){
-            toast.error("You can upload only 4 images at a time");
-            break;
-          }
+
         }
 
         const updatingImages = await Promise.all(promises)
