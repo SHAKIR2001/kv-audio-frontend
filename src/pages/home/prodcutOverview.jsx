@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect,useState } from "react";
+import axios from "axios";
 export default function ProductOverview(){
     const params = useParams();
     const key = params.key;
@@ -16,7 +17,7 @@ export default function ProductOverview(){
             setLoadingStatus("error")
         })
         
-    },[])
+    },[]) //[] ivvaru empty array koduththal useEffect oruthadawei maaththirame run aahum
 
 
     return(
