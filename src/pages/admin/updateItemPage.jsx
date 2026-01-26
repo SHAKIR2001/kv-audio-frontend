@@ -2,6 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate , useLocation} from "react-router-dom";
+import mediaUpload from "../../utils/mediaUpload";
 
 
 
@@ -10,11 +11,11 @@ export default function UpdateProduct() {
   //console.log(location)
   
   const [productKey, setProductKey] = useState(location.state.key);
-  const [productName, setproductName] = useState(location.state.name);
-  const [productPrice, setproductPrice] = useState(location.state.price);
+  const [productName, setProductName] = useState(location.state.name);
+  const [productPrice, setProductPrice] = useState(location.state.price);
   const [productCatagorie, setProductCatagorie] = useState(location.state.category);
-  const [productDescription, setproductDescription] = useState(location.state.description);
-  const [productDimensions, setproductDimensions] = useState(location.state.dimensions);
+  const [productDescription, setProductDescription] = useState(location.state.description);
+  const [productDimensions, setProductDimensions] = useState(location.state.dimensions);
   const [productImages,setProductImages] = useState([]);
   const navigate = useNavigate();
 
@@ -30,14 +31,12 @@ export default function UpdateProduct() {
         const promises = []
     
         for(let i=0; i<ProductImages.length; i++){
-          const promise = mediaUpload(ProductImages[i])
+          const promise = mediaUpload(productImages[i])
           promises.push(promise)
 
         }
 
         updatingImages = await Promise.all(promises)
-
-
   }
 
 
@@ -121,7 +120,7 @@ export default function UpdateProduct() {
               type="text"
               placeholder="Product name"
               value={productName}
-              onChange={(e) => setproductName(e.target.value)}
+              onChange={(e) => setProductName(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -134,7 +133,7 @@ export default function UpdateProduct() {
             <input
               type="number"
               value={productPrice}
-              onChange={(e) => setproductPrice(e.target.value)}
+              onChange={(e) => setProductPrice(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -164,7 +163,7 @@ export default function UpdateProduct() {
               type="text"
               placeholder="10cm x 8cm x 5cm"
               value={productDimensions}
-              onChange={(e) => setproductDimensions(e.target.value)}
+              onChange={(e) => setProductDimensions(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -178,7 +177,7 @@ export default function UpdateProduct() {
               rows="3"
               placeholder="Short product description"
               value={productDescription}
-              onChange={(e) => setproductDescription(e.target.value)}
+              onChange={(e) => setProductDescription(e.target.value)}
               className="w-full px-3 py-2 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>

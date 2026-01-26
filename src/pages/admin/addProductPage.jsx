@@ -7,12 +7,12 @@ import mediaUpload from "../../utils/mediaUpload";
 
 export default function AddProduct() {
   const [productKey, setProductKey] = useState("");
-  const [productName, setproductName] = useState("");
-  const [productPrice, setproductPrice] = useState(0);
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
   const [productCatagorie, setProductCatagorie] = useState("");
-  const [productDescription, setproductDescription] = useState("");
-  const [productDimensions, setproductDimensions] = useState("");
-  const [ProductImages, setProductImages] = useState([]);
+  const [productDescription, setProductDescription] = useState("");
+  const [productDimensions, setProductDimensions] = useState("");
+  const [productImages, setProductImages] = useState([]);
   const navigate = useNavigate();
 
   async function handleAddItem() {
@@ -20,7 +20,7 @@ export default function AddProduct() {
     const promises = []
 
     for(let i=0; i<ProductImages.length; i++){
-      const promise = mediaUpload(ProductImages[i])
+      const promise = mediaUpload(productImages[i])
       promises.push(promise)
       if( i == 5){
         toast.error("You can upload only 4 images at a time");
@@ -116,7 +116,7 @@ export default function AddProduct() {
               type="text"
               placeholder="Product name"
               value={productName}
-              onChange={(e) => setproductName(e.target.value)}
+              onChange={(e) => setProductName(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -129,7 +129,7 @@ export default function AddProduct() {
             <input
               type="number"
               value={productPrice}
-              onChange={(e) => setproductPrice(e.target.value)}
+              onChange={(e) => setProductPrice(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -159,7 +159,7 @@ export default function AddProduct() {
               type="text"
               placeholder="10cm x 8cm x 5cm"
               value={productDimensions}
-              onChange={(e) => setproductDimensions(e.target.value)}
+              onChange={(e) => setProductDimensions(e.target.value)}
               className="w-full h-11 px-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
@@ -173,7 +173,7 @@ export default function AddProduct() {
               rows="3"
               placeholder="Short product description"
               value={productDescription}
-              onChange={(e) => setproductDescription(e.target.value)}
+              onChange={(e) => setProductDescription(e.target.value)}
               className="w-full px-3 py-2 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
