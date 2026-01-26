@@ -66,6 +66,7 @@ export default function UpdateProduct() {
           category: productCatagorie,
           dimensions: productDimensions,
           description: productDescription,
+          image : updatingImages,
         },
         {
           headers: {
