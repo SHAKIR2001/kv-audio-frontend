@@ -8,6 +8,13 @@ export default function ProductOverview(){
     const [product, setProduct] = useState({});
 
     useEffect( ()=>{
+        axios.get(`${import.meta.env.VTE_BACKEND_URL}/api/products/${key}`).then( (res)=>{
+            setProduct(res.data)
+            setLoadingStatus("loaded")
+        }).catch( (err)=>{
+            console.error(err);
+            setLoadingStatus("error")
+        })
         
     },[])
 
