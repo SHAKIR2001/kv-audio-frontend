@@ -15,6 +15,7 @@ export default function UpdateProduct() {
   const [productCatagorie, setProductCatagorie] = useState(location.state.category);
   const [productDescription, setproductDescription] = useState(location.state.description);
   const [productDimensions, setproductDimensions] = useState(location.state.dimensions);
+  const [productImages,setProductImages] = useState([]);
   const navigate = useNavigate();
 
   
