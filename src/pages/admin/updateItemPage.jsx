@@ -23,7 +23,7 @@ export default function UpdateProduct() {
 
   async function handleUpdateItem() {
 
-  let updatingImages = location.state.images
+  let updatingImages = location.state.image
 
   if(productImages.length > 0){
   
