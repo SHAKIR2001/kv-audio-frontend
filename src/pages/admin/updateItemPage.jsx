@@ -35,7 +35,7 @@ export default function UpdateProduct() {
 
         }
 
-        const updatingImages = await Promise.all(promises)
+        updatingImages = await Promise.all(promises)
 
 
   }
