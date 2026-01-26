@@ -38,7 +38,7 @@ export default function ProductCard(props) {
           </div>
 
           <Link to={"/product/"+item.key}
-            className="w-full h-10 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold text-sm"
+            className="w-full h-10 inline-flex items-center justify-center rounded-lg bg-purple-600 text-white font-semibold text-sm no-underline hover:bg-purple-700 transition"
           >
             View Details
           </Link>
