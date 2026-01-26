@@ -22,6 +22,29 @@ export default function UpdateProduct() {
 
 
   async function handleUpdateItem() {
+
+  let updatingImages = location.state.images
+
+  if(productImages.length > 0){
+  
+        const promises = []
+    
+        for(let i=0; i<ProductImages.length; i++){
+          const promise = mediaUpload(ProductImages[i])
+          promises.push(promise)
+          if( i == 5){
+            toast.error("You can upload only 4 images at a time");
+            break;
+          }
+        }
+
+        const updatingImages = await Promise.all(promises)
+
+
+  }
+
+
+
   console.log(
     productKey,
     productName,
