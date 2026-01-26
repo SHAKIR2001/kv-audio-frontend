@@ -37,7 +37,7 @@ export default function ProductCard(props) {
             </span>
           </div>
 
-          <Link to={"/product/"+item.key}
+          <Link to={"/product/"+item.key}  //pass the product key to the productOverview page (in that page see the full details of the product)
             className="w-full h-10 inline-flex items-center justify-center rounded-lg bg-purple-600 text-white font-semibold text-sm no-underline hover:bg-purple-700 transition"
           >
             View Details
