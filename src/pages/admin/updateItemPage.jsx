@@ -21,7 +21,7 @@ export default function UpdateProduct() {
   
 
 
-  async function handleAddItem() {
+  async function handleUpdateItem() {
   console.log(
     productKey,
     productName,
@@ -162,8 +162,29 @@ export default function UpdateProduct() {
             />
           </div>
 
+          {/* Images */}
+          <div>
+            <input type="file"
+              multiple
+              className="
+               cursor-pointer
+               text-sm
+               file:mr-3
+               file:rounded
+               file:border file:border-gray-400
+               file:bg-white
+               file:px-3 file:py-1.5
+               file:text-sm
+               file:cursor-pointer
+               hover:file:bg-gray-50
+               "
+               onChange={(e)=>{setProductImages(e.target.files)}}         
+      
+            />
+          </div>
+
           {/* Button */}
-          <button onClick={handleAddItem}  className="mt-4 h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold">
+          <button onClick={handleUpdateItem}  className="mt-4 h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold">
             Update
           </button>
 
