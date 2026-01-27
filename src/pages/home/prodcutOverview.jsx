@@ -27,7 +27,8 @@ export default function ProductOverview(){
         </div> }
         {loadingStatus == "loaded" && <div className="w-full h-full flex justify-center items-center">
             <div className="w-[49%] h-full  bg-red-500 "></div>
-             <div className="w-[49%] h-full flex-col ">
+            <div className="w-[49%] h-full flex flex-col items-center">
+
                 <h1>{product.name}</h1>
                 <h2>{product.category}</h2>
                 <p>{product.description}</p>
