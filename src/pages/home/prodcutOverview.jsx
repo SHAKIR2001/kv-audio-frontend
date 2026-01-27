@@ -43,6 +43,11 @@ export default function ProductOverview(){
         
             
         }
+        {
+            loadingStatus == "error" && <div>
+                <h1 className="text-5xl  font-bold">Error Occured</h1>
+            </div>
+        }
         </div>
     )
 }
