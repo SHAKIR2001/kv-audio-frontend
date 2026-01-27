@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 export default function ProductCard(props) {
-  const item = props.item; //get the item value through the props (given by the item.jsx)
+  const item = props.item; //get the item value through the props (given by the item.jsx) props.item  = indha item enbadhu item.jsx il ulla left side il ulla props name not the name given in backend
 
   return (
     <div className="w-72 bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden flex flex-col">
