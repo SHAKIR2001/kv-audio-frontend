@@ -9,7 +9,7 @@ export default function ProductOverview(){
     const [product, setProduct] = useState({});
 
     useEffect( ()=>{
-        axios.get(`${import.meta.env.VTE_BACKEND_URL}/api/products/${key}`).then( (res)=>{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/${key}`).then( (res)=>{
             setProduct(res.data)
             setLoadingStatus("loaded")
         }).catch( (err)=>{
@@ -25,9 +25,11 @@ export default function ProductOverview(){
         {loadingStatus == "loading" &&<div className="w-full h-full flex justify-center items-center">
             <div className="h-[70px] w-[70px] border-b-2 rounded-b-full border-b-accent animate-spin "></div>
         </div> }
-        {loadingStatus == "loaded" && <div className="w-full h-full flex justify-center items-center bg-green-300">
+        {loadingStatus == "loaded" && <div className="w-full h-full flex justify-center items-center">
             <div className="w-[49%] h-full  bg-red-500 "></div>
-             <div className="w-[49%] h-full  bg-blue-500 "></div>
+             <div className="w-[49%] h-full flex-col ">
+                <h1>{product.name}</h1>
+             </div>
         </div>
         
             
