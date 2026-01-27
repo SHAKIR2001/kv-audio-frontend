@@ -29,6 +29,11 @@ export default function ProductOverview(){
             <div className="w-[49%] h-full  bg-red-500 "></div>
              <div className="w-[49%] h-full flex-col ">
                 <h1>{product.name}</h1>
+                <h2>{product.category}</h2>
+                <p>{product.description}</p>
+                <p>{product.price}</p>
+                <h1>{product.dimensions}</h1>
+
              </div>
         </div>
         
