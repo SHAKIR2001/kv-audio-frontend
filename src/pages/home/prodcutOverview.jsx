@@ -27,7 +27,7 @@ export default function ProductOverview(){
             <div className="h-[70px] w-[70px] border-b-2 rounded-b-full border-b-accent animate-spin "></div>
         </div> }
         {loadingStatus == "loaded" && <div className="w-full h-full flex justify-center items-center">
-            <div className="w-[49%] h-full  bg-red-500 ">
+            <div className="w-[49%] h-full  ">
                 <ImageSlider images={product.image}/>
             </div>
             <div className="w-[49%] h-full flex flex-col items-center">
