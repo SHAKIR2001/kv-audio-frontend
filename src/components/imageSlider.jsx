@@ -9,7 +9,7 @@ export default function ImageSlider(props){
         <div className="w-full h-[150px] flex justify-center mt-[20px]">
                 {
                     images.map( (image,index)=>{
-                        return <img key={index} src={image} alt="Product" className="w-[100px] mr-[2px] h-[100px] object-cover cursor-pointer " onClick={ ()=>{
+                        return <img key={index} src={image} alt="Product" className={`w-[100px] mr-[2px] h-[100px] object-cover cursor-pointer ${image == selectedImage && "border border-accent "}`} onClick={ ()=>{  //selected image itku border 
                             setSelectedImage(image) //image ondrei click seiyyum podhu kurippita image peridhaaha theriyum (main image aaha)
                         }}/>
                     })
