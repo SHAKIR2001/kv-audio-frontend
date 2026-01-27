@@ -11,16 +11,20 @@ export default function ProductOverview(){
     useEffect( ()=>{
         axios.get(`${import.meta.env.VTE_BACKEND_URL}/api/products/${key}`).then( (res)=>{
             setProduct(res.data)
-            setLoadingStatus("loaded")
+            //setLoadingStatus("loaded")
         }).catch( (err)=>{
             console.error(err);
-            setLoadingStatus("error")
+           // setLoadingStatus("error")
         })
         
     },[]) //[] ivvaru empty array koduththal useEffect oruthadawei maaththirame run aahum
 
 
     return(
-        <dev>Prodcut Overview</dev>
+        <div className="w-full h-full  flex justify-center items-center">
+        {loadingStatus == "loading" &&<div className="w-full h-full flex justify-center items-center">
+            <div className="h-[70px] w-[70px] border-b-2 rounded-b-full border-b-accent animate-spin "></div>
+        </div> }
+        </div>
     )
 }
