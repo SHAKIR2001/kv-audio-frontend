@@ -3,7 +3,7 @@ import { loadCart } from "../../utils/cart";
 import Header from "../../components/header";
 export default function BookingPage(){
 
-    const [cart, setCart] = useState(loadCart());
+    const [cart, setCart] = useState(loadCart()); //get thease from cart.jsx (browser storage)
 
     function reloadCart(){
         setCart(loadCart());
