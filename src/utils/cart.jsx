@@ -8,9 +8,24 @@ export function LoadCart (){  //this function get related cart details that is s
             startingDate : formatDate(new Date()), //get the current day and send it to formate data function to convert that in to string
             endingDate : formatDate(new Date())  
         }
+
+        const cartString = JSON.stringify(cart); //change the cart JSON in to String
+        
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 export function formatDate(date) {  //This function is used to convert a JavaScript Date object into a clean, readable date string in the format : YYYY-MM-DD
   const year = date.getFullYear();
