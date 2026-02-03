@@ -1,8 +1,23 @@
 export function LoadCart (){  //this function get related cart details that is stored in localStorage(browser)
-    const cart = localStorage.getItem("cart")
+    let cart = localStorage.getItem("cart")
 
-    if(cart == null){ //new user / or he dont have put anything in the cart
+    if(cart == null){ // new user / or he dont have put anything in the cart
+        cart = {
+            orderedItems : [],
+            days : 1,
+            startingDate : new Date().toISOString,
+            
 
+            
+        }
     }
 
+}
+
+export function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Ensure two digits
+  const day = String(date.getDate()).padStart(2, '0');       // Ensure two digits
+
+  return `${year}-${month}-${day}`;
 }
