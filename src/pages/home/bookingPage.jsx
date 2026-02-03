@@ -1,5 +1,20 @@
+import { useState } from "react";
+import { loadCart } from "../../utils/cart";
+import Header from "../../components/header";
 export default function BookingPage(){
+
+    const [cart, setCart] = useState(loadCart());
+
+    function reloadCart(){
+        setCart(loadCart());
+    }
+
     return(
-        <h1>Bookings</h1>
+    <div>
+
+        
+
+    </div>
+        
     )
 }
