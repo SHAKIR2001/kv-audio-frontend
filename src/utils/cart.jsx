@@ -5,10 +5,8 @@ export function LoadCart (){  //this function get related cart details that is s
         cart = {
             orderedItems : [],
             days : 1,
-            startingDate : new Date()
-            
-
-            
+            startingDate : formatDate(new Date()), //get the current day and send it to formate data function to convert that in to string
+            endingDate : formatDate(new Date())  
         }
     }
 
