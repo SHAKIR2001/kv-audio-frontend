@@ -36,9 +36,7 @@ export default function Gallery() {
     <div className="w-full min-h-screen px-6 py-10">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-800">Gallery</h1>
-        <p className="text-gray-600 mt-2">
-          Product images (pulled from your uploaded `image[]` URLs).
-        </p>
+
 
         {state === "loading" && (
           <div className="w-full flex justify-center items-center py-10">

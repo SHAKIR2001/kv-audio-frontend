@@ -150,9 +150,8 @@ export default function Contact() {
                 Send Message
               </button>
 
-              <p className="text-xs text-gray-500">
-                This page currently doesn’t send emails. If you want, I can connect it to a backend
-                endpoint (axios POST) or EmailJS.
+              <p className="text-xs w-35 text-black-500 bg-red-600">
+                //Backend still developing
               </p>
             </form>
           </div>
