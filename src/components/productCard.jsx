@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 export default function ProductCard(props) {
-  const item = props.item; //get the item value through the props (given by the item.jsx)
+  const item = props.item; //get the item value through the props (given by the item.jsx) props.item  = indha item enbadhu item.jsx il ulla left side il ulla props name not the name given in backend
 
   return (
     <div className="w-72 bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden flex flex-col">
@@ -36,12 +37,11 @@ export default function ProductCard(props) {
             </span>
           </div>
 
-          <button
-            className="w-full h-10 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold text-sm"
-            disabled={!item.availability}
+          <Link to={"/product/"+item.key}  //pass the product key to the productOverview page (in that page see the full details of the product)
+            className="w-full h-10 inline-flex items-center justify-center rounded-lg bg-purple-600 text-white font-semibold text-sm no-underline hover:bg-purple-700 transition"
           >
-            {item.availability ? "Add to Cart" : "Unavailable"}
-          </button>
+            View Details
+          </Link>
         </div>
       </div>
     </div>

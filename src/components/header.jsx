@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
+import { FaCartShopping } from "react-icons/fa6";
 
 export default function Header(){
     return(
-        <header className="w-full bg-accent h-[100px] shadow-xl flex justify-center items-center relative">
-            <img src="logo.png" className="w-[100px] h-[100px] object-cover absolute left-1 border-[3px] rounded-full border-gray-200" /> 
-            <Link to="/" className="text-white text-[25px] font-bold m-1">Home</Link>
-            <Link to="/contact" className="text-white  text-[25px] font-bold m-1">Contact</Link>
-            <Link to="/gallery" className="text-white  text-[25px] font-bold m-1">Gallery</Link>
-            <Link to="/items" className="text-white  text-[25px] font-bold m-1">Items</Link>
-
-           
-
+        <header className="w-full bg-accent h-[100px] shadow-2xl flex justify-center items-center px-8 sticky top-0 z-50 relative">
+            <img src="/logo.png" className="w-[150px] h-[150px] object-cover rounded-full hover:scale-105  transition-transform duration-300 absolute left-8" /> 
+            
+            <nav className="flex gap-8 items-center">
+                <Link to="/" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300">Home</Link>
+                <Link to="/items" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300">Items</Link>
+                <Link to="/gallery" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300">Gallery</Link>
+                <Link to="/contact" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300">Contact</Link>
+                <Link to="/booking" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300 absolute right-6"> <FaCartShopping/></Link>                
+            </nav>
         </header>
     )
-} 
+}
