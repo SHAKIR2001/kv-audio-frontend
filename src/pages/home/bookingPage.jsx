@@ -10,8 +10,9 @@ export default function BookingPage(){
     }
 
     return(
-    <div>
+    <div className="w-full h-full bg-amber-300 flex flex-col i items-center">
 
+        <h1>Booking Page</h1>
         
 
     </div>
