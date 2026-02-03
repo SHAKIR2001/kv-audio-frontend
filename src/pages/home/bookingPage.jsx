@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { loadCart } from "../../utils/cart";
-import Header from "../../components/header";
+import BookingItems from "../../components/bookingItem";
+
 export default function BookingPage(){
 
     const [cart, setCart] = useState(loadCart()); //get thease from cart.jsx (browser storage)
@@ -16,11 +17,7 @@ export default function BookingPage(){
         <div className="w-full flex flex-col items-center" >
            {
             cart.orderedItems.map( (item)=>{
-                return<div key={item.key}>
-                    <span>{item.key}</span>
-                    <span> x {item.quantity}</span>
-                    
-                </div>
+                return <BookingItems key={item.key} quantity={item.qty}/>
             })
            } 
         </div>
