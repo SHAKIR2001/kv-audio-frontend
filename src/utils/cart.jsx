@@ -20,7 +20,7 @@ export function loadCart (){  //this function get related cart details that is s
 }
 
 export function addToCart(key, quantity){  //using this function we can add an item to the cart
-    const cart = loadCart(); //get the already avuilable carts
+    const cart = loadCart(); //get the already avilable carts
     let found  = false;
 
     for(let i=0; i<cart.orderedItems.length; i++){ //ingu already kurippitta key udiyya items ulladha ena check seidhal, awwaru iruppin quantity koottinaal podhum
@@ -36,9 +36,10 @@ export function addToCart(key, quantity){  //using this function we can add an i
 
     const cartString = JSON.stringify(cart);
     localStorage.setItem("cart", cartString);
-    
 
 }
+
+
 
 
 
