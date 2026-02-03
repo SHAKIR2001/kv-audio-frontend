@@ -17,7 +17,7 @@ export default function BookingPage(){
         <div className="w-full flex flex-col items-center" >
            {
             cart.orderedItems.map( (item)=>{
-                return <BookingItems key={item.key} quantity={item.qty}/>
+                return <BookingItems itemKey={item.key} quantity={item.quantity}/>
             })
            } 
         </div>
