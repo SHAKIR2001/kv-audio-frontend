@@ -19,6 +19,10 @@ export function LoadCart (){  //this function get related cart details that is s
     return cart;
 }
 
+export function addToCart(cartItem){  //using this function we can add an item to the cart
+    
+}
+
 
 
 
