@@ -11,9 +11,12 @@ export function LoadCart (){  //this function get related cart details that is s
 
         const cartString = JSON.stringify(cart); //change the cart JSON in to String
         localStorage.setItem("cart", cartString); //save the converted(String) cart in to the localStorage(browser)
+        return cart;
 
     }
 
+    cart = JSON.parse(cart); //if already a cart avauilable then get the cart details in to cart
+    return cart;
 }
 
 
