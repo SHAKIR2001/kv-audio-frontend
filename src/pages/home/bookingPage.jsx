@@ -10,15 +10,16 @@ export default function BookingPage(){
     }
 
     return(
-    <div className="w-full h-full bg-amber-300 flex flex-col i items-center">
+    <div className="w-full h-full flex flex-col i items-center">
 
         <h1>Create Booking Page</h1>
         <div className="w-full flex flex-col items-center" >
            {
             cart.orderedItems.map( (item)=>{
-                <div>
+                return<div key={item.key}>
                     <span>{item.key}</span>
-                    <span>{item.quantity}</span>
+                    <span> x {item.quantity}</span>
+                    
                 </div>
             })
            } 
