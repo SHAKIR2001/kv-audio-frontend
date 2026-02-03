@@ -19,16 +19,25 @@ export function loadCart (){  //this function get related cart details that is s
     return cart;
 }
 
-export function addToCart(key, qty){  //using this function we can add an item to the cart
+export function addToCart(key, quantity){  //using this function we can add an item to the cart
     const cart = loadCart(); //get the already avuilable carts
     let found  = false;
 
     for(let i=0; i<cart.orderedItems.length; i++){ //ingu already kurippitta key udiyya items ulladha ena check seidhal, awwaru iruppin quantity koottinaal podhum
         if(cart.orderedItems.kay[i] == key){
-            cart.orderedItems[i].quantity += qty;
+            cart.orderedItems[i].quantity += quantity;
             found = true; //if porduct key found , make found true
         }
     }
+
+    if (!found){
+        cart.orderedItems.push({key,quantity})
+    }
+
+    const cartString = JSON.stringify(cart);
+    localStorage.setItem("cart", cartString);
+    
+
 }
 
 
