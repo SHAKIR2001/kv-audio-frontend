@@ -39,7 +39,13 @@ export function addToCart(key, quantity){  //using this function we can add an i
 
 }
 
-
+export function removeFromCart(key) {
+  const cart = loadCart();
+  const newCart = cart.orderedItems.filter((item) => item.key != key);
+  cart.orderedItems = newCart;
+  const cartString = JSON.stringify(cart);
+  localStorage.setItem("cart", cartString);
+}
 
 
 
