@@ -30,7 +30,7 @@ export default function ProductOverview(){
             <div className="w-[49%] h-full  ">
                 <ImageSlider images={product.image}/>
             </div>
-                        <div className="w-[49%] h-full flex flex-col px-6">
+                        <div className="w-[49%] h-full flex flex-col px-6 mt-3">
                             <div className="w-full max-w-xl bg-white rounded-xl shadow-md p-6">
                                 <div className="flex items-start justify-between gap-4">
                                     <div className="min-w-0">
