@@ -10,17 +10,11 @@ export function LoadCart (){  //this function get related cart details that is s
         }
 
         const cartString = JSON.stringify(cart); //change the cart JSON in to String
-        
+        localStorage.setItem("cart", cartString); //save the converted(String) cart in to the localStorage(browser)
+
     }
 
 }
-
-
-
-
-
-
-
 
 
 
