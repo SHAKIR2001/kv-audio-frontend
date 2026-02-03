@@ -39,6 +39,7 @@ export default function ProductOverview(){
                 <h1>{product.dimensions}</h1>
 
              </div>
+             
         </div>
         
             

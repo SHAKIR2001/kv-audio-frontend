@@ -41,8 +41,8 @@ export function addToCart(key, quantity){  //using this function we can add an i
 
 export function removeFromCart(key) {
   const cart = loadCart();
-  const newCart = cart.orderedItems.filter((item) => item.key != key);
-  cart.orderedItems = newCart;
+  const newCart = cart.orderedItems.filter((item) => item.key != key); //anuppiya ket itku porundhaadah itemshalei weru newCart endra varibale itku podudhal(filter)
+  cart.orderedItems = newCart; //filter sidha itemsei maaththiram localStorage il save seidhal so andha key irukkum item save aahadhu
   const cartString = JSON.stringify(cart);
   localStorage.setItem("cart", cartString);
 }
