@@ -10,6 +10,7 @@ export default function Header(){
                 <Link to="/items" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300">Items</Link>
                 <Link to="/gallery" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300">Gallery</Link>
                 <Link to="/contact" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300">Contact</Link>
+                <Link to="/cart" className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300">Cart</Link>                
             </nav>
         </header>
     )
