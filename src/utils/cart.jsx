@@ -24,7 +24,7 @@ export function addToCart(key, quantity){  //using this function we can add an i
     let found  = false;
 
     for(let i=0; i<cart.orderedItems.length; i++){ //ingu already kurippitta key udiyya items ulladha ena check seidhal, awwaru iruppin quantity koottinaal podhum
-        if(cart.orderedItems.kay[i] == key){
+        if(cart.orderedItems.key[i] == key){
             cart.orderedItems[i].quantity += quantity;
             found = true; //if porduct key found , make found true
         }
