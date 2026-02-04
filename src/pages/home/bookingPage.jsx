@@ -17,7 +17,7 @@ export default function BookingPage(){
         <div className="w-full flex flex-col items-center" >
            {
             cart.orderedItems.map( (item)=>{
-                return <BookingItems itemKey={item.key} quantity={item.quantity} refresh={reloadCart}/> //send the reloadCart function to bookingItem.jsx through props
+                return <BookingItems itemKey={item.key} key={item.key} quantity={item.quantity} refresh={reloadCart}/> //send the reloadCart function to bookingItem.jsx through props //2nd key used as a unique key need when using map
             })
            } 
         </div>

@@ -9,12 +9,12 @@ export default function BookingItems(props){
     useEffect(()=>{
         if(status == "loading"){
             axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/${itemKey}`).then( (res)=>{
-            setProduct(res.data)
-            setLoadingStatus("success")
+            setItem(res.data)
+            setStatus("success")
         }).catch( (err)=>{
             console.log(err);
             setStatus("error");
-            removeFromCart(itemKey) //if error comes we need to remove the perticuller item from the cart and need to refresh the page
+           // removeFromCart(itemKey) //if error comes we need to remove the perticuller item from the cart and need to refresh the page
             refresh(); //get this from BookingPage through props(refresh) to refresh the page
         })      
         }
