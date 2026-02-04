@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { loadCart, formatDate } from "../../utils/cart";
 import BookingItems from "../../components/bookingItem";
 import toast from "react-hot-toast";
@@ -17,20 +17,27 @@ export default function BookingPage() {
 
   function reloadCart() {
     setCart(loadCart());
+    calculateTotal();
+  }
 
+  function calculateTotal(){
     const cartInfo = loadCart();
     cartInfo.startingDate = startingDate;
     cartInfo.endingDate = endingDate;
     cartInfo.days = daysBetween;
 
-    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/orders/quote`, {
-        cartInfo
-    }).then( (res)=>{
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/orders/quote`, cartInfo).then( (res)=>{
+        console.log(res.data);
         setTotal(res.data.total)
     }).catch( (err)=>{
         console.error(err);
     })
   }
+
+  useEffect( ()=>{
+    calculateTotal();
+
+  },[startingDate, endingDate])
 
   function handleBookingCreation() {
     const cart = loadCart();
@@ -135,6 +142,13 @@ export default function BookingPage() {
           );
         })}
       </div>
+
+      <div>
+        <p className="w-full max-w-3xl mt-3 text-right text-lg font-bold text-gray-900">
+          Total: <span className="text-purple-600">LKR {Number(total || 0).toFixed(2)}</span>
+        </p>
+      </div>
+
 
       <div className="w-full flex justify-center ">
         <button
