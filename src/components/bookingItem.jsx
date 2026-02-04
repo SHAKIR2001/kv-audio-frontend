@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 export default function BookingItems(props){
     const {itemKey ,quantity} = props;
     const [item, setItem] = useState(null);
-    const [loading, isLoading] = useState(true);
+    const [status, setStatus] = useState("loading"); //loading / error / success
 
     useEffect(()=>{
 
