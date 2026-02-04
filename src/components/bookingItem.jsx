@@ -14,7 +14,8 @@ export default function BookingItems(props){
         }).catch( (err)=>{
             console.log(err);
             setStatus("error");
-            removeFromCart(itemKey) //if error comes we need to remove the perticuller item from the cart
+            removeFromCart(itemKey) //if error comes we need to remove the perticuller item from the cart and need to refresh the page
+            refresh(); //get this from BookingPage through props(refresh) to refresh the page
         })      
         }
 
