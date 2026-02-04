@@ -10,12 +10,26 @@ export default function BookingPage() {
 
   const [startingDate, setStartingDate] = useState(formatDate(new Date()));
   const [endingDate, setEndingDate] = useState(formatDate(new Date(Date.now() + 24 * 60 * 60 * 1000)));
+  const [total , setTotal] = useState(0);
   const daysBetween = Math.max(
     (new Date(endingDate) - new Date(startingDate)) / (1000 * 60 * 60 * 24),
    1);
 
   function reloadCart() {
     setCart(loadCart());
+
+    const cartInfo = loadCart();
+    cartInfo.startingDate = startingDate;
+    cartInfo.endingDate = endingDate;
+    cartInfo.days = daysBetween;
+
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/orders/quote`, {
+        cartInfo
+    }).then( (res)=>{
+        setTotal(res.data.total)
+    }).catch( (err)=>{
+        console.error(err);
+    })
   }
 
   function handleBookingCreation() {
