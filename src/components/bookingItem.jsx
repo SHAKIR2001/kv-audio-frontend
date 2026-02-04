@@ -131,7 +131,7 @@ export default function BookingItems(props) {
         <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
           <div>
             <p className="text-xs font-semibold text-gray-500">Price</p>
-            <p className="font-bold text-purple-600">LKR {item?.price}</p>
+            <p className="font-bold text-purple-600">LKR {item?.price.toFixed(2)}</p>
           </div>
 
           <div>
@@ -141,7 +141,7 @@ export default function BookingItems(props) {
 
           <div>
             <p className="text-xs font-semibold text-gray-500">Line total</p>
-            <p className="font-bold text-gray-900">LKR {lineTotal}</p>
+            <p className="font-bold text-gray-900">LKR {lineTotal.toFixed(2)}</p>
           </div>
 
           <div className="hidden md:block">
