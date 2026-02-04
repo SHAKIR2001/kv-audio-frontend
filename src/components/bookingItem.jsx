@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import { removeFromCart } from "../utils/cart";
+import { addToCart, removeFromCart } from "../utils/cart";
 import { Link } from "react-router-dom";
 
 export default function BookingItems(props) {
@@ -29,7 +29,6 @@ export default function BookingItems(props) {
         console.error(err);
         setState("error");
 
-        // If a product no longer exists, remove it from the cart and refresh UI
         try {
           removeFromCart(itemKey);
         } finally {
@@ -49,11 +48,12 @@ export default function BookingItems(props) {
     return arr[0] || "/logo.png";
   }, [item]);
 
+  const price = useMemo(() => Number(item?.price ?? 0), [item?.price]);
+
   const lineTotal = useMemo(() => {
-    const price = Number(item?.price ?? 0);
     const qty = Number(quantity ?? 0);
     return price * qty;
-  }, [item?.price, quantity]);
+  }, [price, quantity]);
 
   function onRemove() {
     if (removing) return;
@@ -64,6 +64,27 @@ export default function BookingItems(props) {
       refresh?.();
       setRemoving(false);
     }
+  }
+
+  function onPlus() {
+    if (removing) return;
+    addToCart(itemKey, 1);
+    refresh?.();
+  }
+
+  function onMinus() {
+    if (removing) return;
+
+    const qty = Number(quantity ?? 0);
+
+    if (qty <= 1) {
+      removeFromCart(itemKey);
+      refresh?.();
+      return;
+    }
+
+    addToCart(itemKey, -1);
+    refresh?.();
   }
 
   if (state === "loading") {
@@ -98,7 +119,6 @@ export default function BookingItems(props) {
     );
   }
 
-  // success
   return (
     <div className="w-full max-w-3xl bg-white rounded-2xl shadow p-4 md:p-5 flex flex-col md:flex-row gap-4 md:items-center m-1">
       {/* Image */}
@@ -124,19 +144,42 @@ export default function BookingItems(props) {
             <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">
               {item?.category || "other"}
             </span>
-
           </div>
         </div>
 
         <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
           <div>
             <p className="text-xs font-semibold text-gray-500">Price</p>
-            <p className="font-bold text-purple-600">LKR {item?.price.toFixed(2)}</p>
+            <p className="font-bold text-purple-600">LKR {price.toFixed(2)}</p>
           </div>
 
           <div>
             <p className="text-xs font-semibold text-gray-500">Qty</p>
-            <p className="font-semibold text-gray-900">{quantity}</p>
+
+            {/* Simple + / - */}
+            <div className="mt-1 inline-flex items-center rounded-lg border border-gray-200 overflow-hidden">
+              <button
+                type="button"
+                onClick={onMinus}
+                disabled={removing || Number(quantity ?? 0) <= 0}
+                className="w-9 h-9 bg-gray-100 hover:bg-gray-200 disabled:opacity-60 transition font-bold"
+              >
+                -
+              </button>
+
+              <div className="w-12 h-9 inline-flex items-center justify-center font-semibold text-gray-900">
+                {quantity}
+              </div>
+
+              <button
+                type="button"
+                onClick={onPlus}
+                disabled={removing}
+                className="w-9 h-9 bg-gray-100 hover:bg-gray-200 disabled:opacity-60 transition font-bold"
+              >
+                +
+              </button>
+            </div>
           </div>
 
           <div>
