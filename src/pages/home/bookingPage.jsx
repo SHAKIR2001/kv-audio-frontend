@@ -2,6 +2,7 @@ import { useState } from "react";
 import { loadCart, formatDate } from "../../utils/cart";
 import BookingItems from "../../components/bookingItem";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function BookingPage() {
   const [cart, setCart] = useState(loadCart()); //get thease from cart.jsx (browser storage)
