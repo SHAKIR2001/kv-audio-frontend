@@ -1,36 +1,176 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { removeFromCart } from "../utils/cart";
-export default function BookingItems(props){
-    const {itemKey ,quantity, refresh} = props; //refresh use to to get loadCart from cart.jsx
-    const [item, setItem] = useState(null);
-    const [status, setStatus] = useState("loading"); //loading / error / success
+import { Link } from "react-router-dom";
 
-    useEffect(()=>{
-        if(status == "loading"){
-            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/${itemKey}`).then( (res)=>{
-            setItem(res.data)
-            console.log(res.data)
-            setStatus("success")
-        }).catch( (err)=>{
-            console.log(err);
-            setStatus("error");
-           removeFromCart(itemKey) //if error comes we need to remove the perticuller item from the cart and need to refresh the page
-            refresh(); //get this from BookingPage through props(refresh) to refresh the page
-        })      
+export default function BookingItems(props) {
+  const { itemKey, quantity, refresh } = props;
+
+  const [item, setItem] = useState(null);
+  const [state, setState] = useState("loading"); // loading | success | error
+  const [removing, setRemoving] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        setState("loading");
+        const res = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/products/${itemKey}`
+        );
+
+        if (cancelled) return;
+        setItem(res.data);
+        setState("success");
+      } catch (err) {
+        if (cancelled) return;
+
+        console.error(err);
+        setState("error");
+
+        // If a product no longer exists, remove it from the cart and refresh UI
+        try {
+          removeFromCart(itemKey);
+        } finally {
+          refresh?.();
         }
+      }
+    }
 
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [itemKey, refresh]);
 
-    },[status])
+  const imageUrl = useMemo(() => {
+    const arr = Array.isArray(item?.image) ? item.image : [];
+    return arr[0] || "/logo.png";
+  }, [item]);
 
+  const lineTotal = useMemo(() => {
+    const price = Number(item?.price ?? 0);
+    const qty = Number(quantity ?? 0);
+    return price * qty;
+  }, [item?.price, quantity]);
 
+  function onRemove() {
+    if (removing) return;
+    setRemoving(true);
+    try {
+      removeFromCart(itemKey);
+    } finally {
+      refresh?.();
+      setRemoving(false);
+    }
+  }
 
-    return(
-        <div className="flex flex-row items-center" > 
-            <span>{itemKey}</span>
-            <span> x {quantity}</span>
-        
-        
+  if (state === "loading") {
+    return (
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow p-4 md:p-5 flex gap-4 animate-pulse">
+        <div className="w-20 h-20 md:w-24 md:h-24 bg-gray-200 rounded-xl" />
+        <div className="flex-1">
+          <div className="h-4 bg-gray-200 rounded w-1/2" />
+          <div className="mt-2 h-3 bg-gray-200 rounded w-1/3" />
+          <div className="mt-4 h-3 bg-gray-200 rounded w-1/4" />
         </div>
-    )
+        <div className="w-28 h-9 bg-gray-200 rounded-lg" />
+      </div>
+    );
+  }
+
+  if (state === "error") {
+    return (
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow p-4 md:p-5 flex items-center justify-between">
+        <div>
+          <p className="text-sm font-semibold text-red-600">Item unavailable</p>
+          <p className="text-xs text-gray-600 mt-0.5">Key: {itemKey}</p>
+        </div>
+        <button
+          type="button"
+          onClick={onRemove}
+          className="h-9 px-3 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition"
+        >
+          Remove
+        </button>
+      </div>
+    );
+  }
+
+  // success
+  return (
+    <div className="w-full max-w-3xl bg-white rounded-2xl shadow p-4 md:p-5 flex flex-col md:flex-row gap-4 md:items-center m-1">
+      {/* Image */}
+      <div className="w-full md:w-auto flex justify-center md:justify-start">
+        <img
+          src={imageUrl}
+          alt={item?.name || itemKey}
+          className="w-24 h-24 md:w-28 md:h-28 object-contain bg-gray-100 rounded-xl"
+        />
+      </div>
+
+      {/* Main */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h3 className="text-base md:text-lg font-bold text-gray-900 truncate">
+              {item?.name}
+            </h3>
+            <p className="text-xs text-gray-500 mt-0.5">Key: {itemKey}</p>
+          </div>
+
+          <div className="shrink-0 flex gap-2">
+            <span className="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">
+              {item?.category || "other"}
+            </span>
+
+          </div>
+        </div>
+
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+          <div>
+            <p className="text-xs font-semibold text-gray-500">Price</p>
+            <p className="font-bold text-purple-600">LKR {item?.price}</p>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold text-gray-500">Qty</p>
+            <p className="font-semibold text-gray-900">{quantity}</p>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold text-gray-500">Line total</p>
+            <p className="font-bold text-gray-900">LKR {lineTotal}</p>
+          </div>
+
+          <div className="hidden md:block">
+            <p className="text-xs font-semibold text-gray-500">Dimensions</p>
+            <p className="font-semibold text-gray-900 truncate">
+              {item?.dimensions || "-"}
+            </p>
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Link
+            to={`/product/${itemKey}`}
+            className="h-9 px-3 inline-flex items-center justify-center rounded-lg bg-gray-200 text-gray-800 text-sm font-semibold hover:bg-gray-300 transition no-underline"
+          >
+            View
+          </Link>
+
+          <button
+            type="button"
+            onClick={onRemove}
+            disabled={removing}
+            className="h-9 px-3 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 disabled:opacity-60 transition"
+          >
+            {removing ? "Removing..." : "Remove"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
