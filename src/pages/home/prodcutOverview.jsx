@@ -3,6 +3,7 @@ import { useEffect,useState } from "react";
 import axios from "axios";
 import ImageSlider from "../../components/imageSlider";
 import { addToCart, loadCart } from "../../utils/cart";
+import toast from "react-hot-toast";
 export default function ProductOverview(){
     const params = useParams();
     const key = params.key;
@@ -62,7 +63,7 @@ export default function ProductOverview(){
                                 </div>
 
                                 <button
-                                    className="mt-6 w-full h-11 inline-flex items-center justify-center rounded-lg bg-purple-600 text-white font-semibold text-sm hover:bg-purple-700 active:bg-purple-800 transition " onClick={()=>{addToCart(product.key,1); console.log(loadCart())}}
+                                    className="mt-6 w-full h-11 inline-flex items-center justify-center rounded-lg bg-purple-600 text-white font-semibold text-sm hover:bg-purple-700 active:bg-purple-800 transition " onClick={()=>{addToCart(product.key,1); toast.success("Item Added to cart"); console.log(loadCart())}}
                                 >
                                     Add to cart
                                 </button>
