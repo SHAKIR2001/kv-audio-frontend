@@ -30,10 +30,10 @@ export default function AdminPage(props){
           Items
       </Link>
 
-      <button className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
+      <Link to="/admin/users" className="w-full h-[40px] text-[25px] font-bold cursor-pointer flex justify-center items-center">
         <FaRegUser />
           Users
-      </button>
+      </Link>
 
       </div>
 
