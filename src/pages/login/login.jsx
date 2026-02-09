@@ -33,6 +33,8 @@ export default function LoginPage(){
         ).catch(
             (err)=>{
                 console.log(err)
+                toast.error(err?.response?.data?.message )
+                
                
             }
         )
