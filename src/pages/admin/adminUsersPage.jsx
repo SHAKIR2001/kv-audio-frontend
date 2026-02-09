@@ -71,6 +71,7 @@ export default function AdminUsersPage() {
                       <th className="px-5 py-4">Role</th>
                       <th className="px-5 py-4">Phone</th>
                       <th className="px-5 py-4">Address</th>
+                      <th className="px-5 py-4">Status</th>
                       
                     </tr>
                   </thead>
