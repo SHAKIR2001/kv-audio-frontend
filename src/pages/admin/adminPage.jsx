@@ -6,7 +6,7 @@ import AdminItemsPage from "./adminItemsPage";
 import AddProduct from "./addProductPage"
 import UpdateProduct from "./updateItemPage";
 import AdminUsersPage from "./adminUsersPage";
-import AdminBookingPage from "./adminBokkingPage";
+import AdminOrderPage from "./adminOrderPage";
 
 export default function AdminPage(props){
     return(
@@ -72,7 +72,7 @@ export default function AdminPage(props){
         <div className="p-4 md:p-6">
           <div className="max-w-7xl mx-auto">
             <Routes path="/*">
-              <Route path="/bookings" element={<AdminBookingPage/>}/>
+              <Route path="/orders" element={<AdminOrderPage/>}/>
               <Route path="/items" element={<AdminItemsPage/>}/>
               <Route path="/items/add" element={<AddProduct/>} />
               <Route path="/items/edit" element={<UpdateProduct/>} />
