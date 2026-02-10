@@ -6,7 +6,7 @@ export default function AdminOrderPage() {
   const [orders, setOrders] = useState([]);
   const [state, setState] = useState("loading"); // loading | success | error
   const [activeOrder, setActiveOrder] = useState(null);
-  const [modalOpened, setModalOpened] = useState(flase)
+  const [modalOpened, setModalOpened] = useState(false)
 
   // UI controls
   const [search, setSearch] = useState("");
