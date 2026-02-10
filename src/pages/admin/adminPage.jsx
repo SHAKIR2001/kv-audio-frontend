@@ -33,7 +33,7 @@ export default function AdminPage(props){
             className="w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/0 hover:bg-white/10 transition no-underline text-white"
           >
             <FaRegBookmark className="text-lg" />
-            Bookings
+            Orders
           </Link>
 
           <Link
