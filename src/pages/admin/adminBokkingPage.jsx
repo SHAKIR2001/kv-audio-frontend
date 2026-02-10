@@ -1,15 +1,15 @@
 import { useState } from "react";
-export default function AdminBookingPage(){
+export default function AdminOrderPage(){
 
-   /* const [bookings, setBooking] = useState([]);
+    const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect( ()=>{
 
 
-    }, [loading]) */
+    }, [loading]) 
 
     return(
-        <div>Bookings</div>
+        <div>Orders</div>
     )
 }
