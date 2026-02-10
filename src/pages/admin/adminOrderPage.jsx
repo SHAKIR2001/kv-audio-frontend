@@ -439,6 +439,29 @@ export default function AdminOrderPage() {
                           </div>
                         </div>
                       </div>
+
+                      <div className="mt-6 flex flex-col sm:flex-row gap-2 sm:justify-end">
+                        <button
+                          type="button"
+                          className="h-10 px-4 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition cursor-pointer"
+                          onClick={() => {
+                            
+                          }}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          type="button"
+                          className="h-10 px-4 rounded-xl bg-red-600 text-white font-semibold hover:bg-red-700 transition cursor-pointer"
+                          onClick={() => {
+                            
+                          }}
+                        >
+                          Reject
+                        </button>
+
+
+                      </div>
                     </div>
                   </div>
                 </div>
