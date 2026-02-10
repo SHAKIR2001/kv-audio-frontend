@@ -11,7 +11,7 @@ export default function AdminOrderPage() {
 
   // UI controls
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all"); // all | approved | pending
+  const [statusFilter, setStatusFilter] = useState("all"); // all | pending | approved | rejected
   const [sortBy, setSortBy] = useState("orderDateDesc"); // orderDateDesc | orderDateAsc | totalDesc | totalAsc
 
   async function fetchOrders() {
@@ -94,16 +94,26 @@ export default function AdminOrderPage() {
     setActiveOrder(null);
   }
 
+  function normalizeStatus(value) {
+    const s = String(value || "").trim();
+    return s || "Pending";
+  }
+
+  function statusTone(status) {
+    const s = normalizeStatus(status).toLowerCase();
+    if (s === "approved") return "approved";
+    if (s === "rejected") return "rejected";
+    return "pending";
+  }
+
   const filteredAndSorted = useMemo(() => {
     const q = search.trim().toLowerCase();
 
     let list = Array.isArray(orders) ? [...orders] : [];
 
-    // filter: status
-    if (statusFilter === "approved") {
-      list = list.filter((o) => Boolean(o?.isApproved));
-    } else if (statusFilter === "pending") {
-      list = list.filter((o) => !Boolean(o?.isApproved));
+    // filter: status (string)
+    if (statusFilter !== "all") {
+      list = list.filter((o) => normalizeStatus(o?.status).toLowerCase() === statusFilter);
     }
 
     // filter: search by orderId/email
@@ -138,6 +148,42 @@ export default function AdminOrderPage() {
     return list;
   }, [orders, search, sortBy, statusFilter]);
 
+
+  function handleOrderStatusChange(orderId, status) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Not authorized. Please login again.");
+      return;
+    }
+
+    if (!orderId) {
+      toast.error("Order id missing");
+      return;
+    }
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/orders/status/${orderId}`,
+        { status: normalizeStatus(status) },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        toast.success("Order status updated");
+        closeModal();
+        fetchOrders();
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error(
+          err?.response?.data?.error ||
+            err?.response?.data?.message ||
+            "Failed to update order status"
+        );
+      });
+  }
   return (
     <div className="w-full p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
@@ -186,6 +232,7 @@ export default function AdminOrderPage() {
                 <option value="all">All</option>
                 <option value="pending">Pending</option>
                 <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
               </select>
             </div>
 
@@ -250,8 +297,9 @@ export default function AdminOrderPage() {
 
                   <tbody className="divide-y divide-gray-100">
                     {filteredAndSorted.map((o) => {
-                      const approved = Boolean(o?.isApproved);
                       const total = Number(o?.totalAmount ?? 0);
+                      const status = normalizeStatus(o?.status);
+                      const tone = statusTone(status);
 
                       return (
                         <tr
@@ -289,12 +337,14 @@ export default function AdminOrderPage() {
                             <span
                               className={[
                                 "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-extrabold ring-1",
-                                approved
+                                tone === "approved"
                                   ? "bg-green-50 text-green-700 ring-green-200"
-                                  : "bg-yellow-50 text-yellow-700 ring-yellow-200",
+                                  : tone === "rejected"
+                                    ? "bg-red-50 text-red-700 ring-red-200"
+                                    : "bg-yellow-50 text-yellow-700 ring-yellow-200",
                               ].join(" ")}
                             >
-                              {approved ? "APPROVED" : "PENDING"}
+                              {status.toUpperCase()}
                             </span>
                           </td>
 
@@ -329,7 +379,7 @@ export default function AdminOrderPage() {
                         <h2 className="text-lg font-extrabold text-gray-900">Order Details</h2>
                       </div>
 
-                        <IoMdCloseCircleOutline className="text-3xl cursor-pointer hover hover:text-red-600" onClick={closeModal}/>
+                        <IoMdCloseCircleOutline className="text-3xl cursor-pointer hover:text-red-600" onClick={closeModal}/>
                     </div>
 
                     <div className="p-5 max-h-[75vh] overflow-auto">
@@ -351,10 +401,14 @@ export default function AdminOrderPage() {
                           <span
                             className={[
                               "font-extrabold",
-                              activeOrder?.isApproved ? "text-green-700" : "text-yellow-700",
+                              statusTone(activeOrder?.status) === "approved"
+                                ? "text-green-700"
+                                : statusTone(activeOrder?.status) === "rejected"
+                                  ? "text-red-700"
+                                  : "text-yellow-700",
                             ].join(" ")}
                           >
-                            {activeOrder?.isApproved ? "Approved" : "Pending"}
+                            {normalizeStatus(activeOrder?.status)}
                           </span>
                         </div>
                         <div className="text-sm">
@@ -445,7 +499,7 @@ export default function AdminOrderPage() {
                           type="button"
                           className="h-10 px-4 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition cursor-pointer"
                           onClick={() => {
-                            
+                            handleOrderStatusChange(activeOrder?.orderId || activeOrder?._id, "Approved");
                           }}
                         >
                           Approve
@@ -454,7 +508,7 @@ export default function AdminOrderPage() {
                           type="button"
                           className="h-10 px-4 rounded-xl bg-red-600 text-white font-semibold hover:bg-red-700 transition cursor-pointer"
                           onClick={() => {
-                            
+                            handleOrderStatusChange(activeOrder?.orderId || activeOrder?._id, "Rejected");
                           }}
                         >
                           Reject
