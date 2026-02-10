@@ -26,6 +26,10 @@ export default function AdminOrderPage(){
     }, [loading]) 
 
     return(
-        <div>Admin Orders page</div>
+       <div className="w-full h-full flex flex-col  items-center">
+         <div>Admin Orders page</div>
+
+       </div> 
+        
     )
 }
