@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 export default function AdminOrderPage() {
   const [orders, setOrders] = useState([]);
   const [state, setState] = useState("loading"); // loading | success | error
+  const [activeOrder, setActiveOrder] = useState(null);
+  const [modalOpened, setModalOpened] = useState(flase)
 
   // UI controls
   const [search, setSearch] = useState("");
