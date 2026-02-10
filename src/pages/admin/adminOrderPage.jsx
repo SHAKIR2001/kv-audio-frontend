@@ -26,6 +26,6 @@ export default function AdminOrderPage(){
     }, [loading]) 
 
     return(
-        <div>Orders</div>
+        <div>Admin Orders page</div>
     )
 }
