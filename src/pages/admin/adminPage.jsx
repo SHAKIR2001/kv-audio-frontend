@@ -12,7 +12,7 @@ import axios from "axios";
 
 export default function AdminPage(props){
 
-  const [userValidated, setUserValidated] = useState(true);
+  const [userValidated, setUserValidated] = useState(false);
 
   useEffect(()=>{
     const token = localStorage.getItem("token")
@@ -27,7 +27,7 @@ export default function AdminPage(props){
       console.log(res.data)
       const user = res.data
 
-      if(user.role !== admin){
+      if(user.role !== "admin"){
         window.location.href ="/"; //if the user is customer he is goes to homepage
       }else{
         setUserValidated(true) // if user is an admin 
