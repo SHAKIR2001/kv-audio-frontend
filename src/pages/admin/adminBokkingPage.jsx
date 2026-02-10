@@ -7,10 +7,13 @@ export default function AdminOrderPage(){
     useEffect( ()=>{
         if(loading){
             axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/orders`).then( (res)=>{
-                console.log(res.data)
-                setOrders(res.data)
-                setLoading(false)
-            }).catch
+                console.log(res.data);
+                setOrders(res.data);
+                setLoading(false);
+            }).catch( (err)=>{
+                console.error(err);
+                setLoading(false);
+            })
         }
 
 
