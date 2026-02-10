@@ -127,7 +127,7 @@ export default function AdminOrderPage() {
               <button
                 type="button"
                 onClick={fetchOrders}
-                className="h-10 px-4 rounded-xl bg-purple-600 text-white font-semibold hover:bg-purple-700 transition"
+                className="h-10 px-4 rounded-xl bg-purple-600 text-white font-semibold hover:bg-purple-700 transition cursor-pointer"
               >
                 Refresh
               </button>
@@ -224,7 +224,7 @@ export default function AdminOrderPage() {
                       const total = Number(o?.totalAmount ?? 0);
 
                       return (
-                        <tr key={o?._id || o?.orderId} className="hover:bg-gray-50/60 transition">
+                        <tr key={o?._id || o?.orderId} className="hover:bg-gray-50/60 transition cursor-pointer">
                           <td className="px-5 py-4">
                             <div className="font-extrabold text-gray-900">{o?.orderId || "—"}</div>
                             
