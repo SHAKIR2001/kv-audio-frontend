@@ -226,7 +226,11 @@ export default function AdminOrderPage() {
                       const total = Number(o?.totalAmount ?? 0);
 
                       return (
-                        <tr key={o?._id || o?.orderId} className="hover:bg-gray-50/60 transition cursor-pointer">
+                        <tr key={o?._id || o?.orderId} className="hover:bg-gray-50/60 transition cursor-pointer" onClick={()=>{
+                            setActiveOrder(o);
+                            setModalOpened(ture);
+
+                        }}>
                           <td className="px-5 py-4">
                             <div className="font-extrabold text-gray-900">{o?.orderId || "—"}</div>
                             
