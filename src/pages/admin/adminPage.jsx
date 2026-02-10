@@ -7,8 +7,41 @@ import AddProduct from "./addProductPage"
 import UpdateProduct from "./updateItemPage";
 import AdminUsersPage from "./adminUsersPage";
 import AdminOrderPage from "./adminOrderPage";
+import { useState,useEffect } from "react";
+import axios from "axios";
 
 export default function AdminPage(props){
+
+  const [userValidated, setUserValidated] = useState(true);
+
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+    if(!token){ 
+      window.location.href = "/login";
+    }
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users`,{
+      headers : {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res)=>{
+      console.log(res.data)
+      const user = res.data
+
+      if(user.role !== admin){
+        window.location.href ="/"; //if the user is customer he is goes to homepage
+      }else{
+        setUserValidated(true) // if user is an admin 
+      }
+      
+    }).catch((err)=>{
+      console.log(err)
+      setUserValidated(false);
+    })
+
+
+  },[])
+
+
     return(
     <div className="w-full min-h-screen flex bg-primary">
       {/* Sidebar */}
