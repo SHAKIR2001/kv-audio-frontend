@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 export default function AdminOrderPage() {
   const [orders, setOrders] = useState([]);
   const [state, setState] = useState("loading"); // loading | success | error
   const [activeOrder, setActiveOrder] = useState(null);
-  const [modalOpened, setModalOpened] = useState(false)
+  const [modalOpened, setModalOpened] = useState(false);
 
   // UI controls
   const [search, setSearch] = useState("");
@@ -28,7 +29,9 @@ export default function AdminOrderPage() {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      setOrders(Array.isArray(res.data) ? res.data : []);
+      // Backend returns an array for customers, but for admin it returns: { orders: [...] }
+      const list = Array.isArray(res.data) ? res.data : Array.isArray(res.data?.orders) ? res.data.orders : [];
+      setOrders(list);
       setState("success");
     } catch (err) {
       console.error(err);
@@ -41,6 +44,20 @@ export default function AdminOrderPage() {
     fetchOrders();
     
   }, []);
+
+  useEffect(() => {
+    if (!modalOpened) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setModalOpened(false);
+        setActiveOrder(null);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [modalOpened]);
 
   function formatDateTime(value) {
     if (!value) return "—";
@@ -64,6 +81,17 @@ export default function AdminOrderPage() {
       month: "short",
       day: "2-digit",
     });
+  }
+
+  function formatMoney(value) {
+    const n = Number(value);
+    if (Number.isNaN(n)) return "0.00";
+    return n.toFixed(2);
+  }
+
+  function closeModal() {
+    setModalOpened(false);
+    setActiveOrder(null);
   }
 
   const filteredAndSorted = useMemo(() => {
@@ -226,11 +254,14 @@ export default function AdminOrderPage() {
                       const total = Number(o?.totalAmount ?? 0);
 
                       return (
-                        <tr key={o?._id || o?.orderId} className="hover:bg-gray-50/60 transition cursor-pointer" onClick={()=>{
+                        <tr
+                          key={o?._id || o?.orderId}
+                          className="hover:bg-gray-50/60 transition cursor-pointer"
+                          onClick={() => {
                             setActiveOrder(o);
-                            setModalOpened(ture);
-
-                        }}>
+                            setModalOpened(true);
+                          }}
+                        >
                           <td className="px-5 py-4">
                             <div className="font-extrabold text-gray-900">{o?.orderId || "—"}</div>
                             
@@ -280,6 +311,139 @@ export default function AdminOrderPage() {
 
             </div>
           )}
+          {
+            modalOpened  && (
+                <div
+                  className="fixed inset-0 bg-black/40 flex justify-center items-center p-4 z-50 "
+                  onClick={closeModal}
+                >
+                  <div
+                    className="w-full max-w-2xl bg-white rounded-2xl shadow-xl ring-1 ring-gray-100 overflow-hidden"
+                    onClick={(e) => e.stopPropagation()}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Order Details"
+                  >
+                    <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+                      <div>
+                        <h2 className="text-lg font-extrabold text-gray-900">Order Details</h2>
+                      </div>
+
+                        <IoMdCloseCircleOutline className="text-3xl cursor-pointer hover hover:text-red-600" onClick={closeModal}/>
+                    </div>
+
+                    <div className="p-5 max-h-[75vh] overflow-auto">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                        <div className="text-sm">
+                          <span className="font-extrabold text-gray-800">Order ID:</span>{" "}
+                          <span className="text-gray-700 font-semibold">{activeOrder?.orderId || "—"}</span>
+                        </div>
+                        <div className="text-sm">
+                          <span className="font-extrabold text-gray-800">Email:</span>{" "}
+                          <span className="text-gray-700 font-semibold">{activeOrder?.email || "—"}</span>
+                        </div>
+                        <div className="text-sm">
+                          <span className="font-extrabold text-gray-800">Days:</span>{" "}
+                          <span className="text-gray-700 font-semibold">{Number(activeOrder?.days ?? 0) || 0}</span>
+                        </div>
+                        <div className="text-sm">
+                          <span className="font-extrabold text-gray-800">Approval Status:</span>{" "}
+                          <span
+                            className={[
+                              "font-extrabold",
+                              activeOrder?.isApproved ? "text-green-700" : "text-yellow-700",
+                            ].join(" ")}
+                          >
+                            {activeOrder?.isApproved ? "Approved" : "Pending"}
+                          </span>
+                        </div>
+                        <div className="text-sm">
+                          <span className="font-extrabold text-gray-800">Starting Date:</span>{" "}
+                          <span className="text-gray-700 font-semibold">{formatDateOnly(activeOrder?.startingDate)}</span>
+                        </div>
+                        <div className="text-sm">
+                          <span className="font-extrabold text-gray-800">Ending Date:</span>{" "}
+                          <span className="text-gray-700 font-semibold">{formatDateOnly(activeOrder?.endingDate)}</span>
+                        </div>
+                        <div className="text-sm">
+                          <span className="font-extrabold text-gray-800">Total Amount:</span>{" "}
+                          <span className="text-purple-700 font-extrabold">{formatMoney(activeOrder?.totalAmount)}</span>
+                        </div>
+                        <div className="text-sm">
+                          <span className="font-extrabold text-gray-800">Order Date:</span>{" "}
+                          <span className="text-gray-700 font-semibold">{formatDateOnly(activeOrder?.orderDate)}</span>
+                        </div>
+                      </div>
+
+                      <div className="mt-6">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-sm font-extrabold text-gray-900">Items</h3>
+                          <span className="text-xs text-gray-500">
+                            {Array.isArray(activeOrder?.orderedItems) ? activeOrder.orderedItems.length : 0} item(s)
+                          </span>
+                        </div>
+
+                        <div className="mt-3 rounded-2xl ring-1 ring-gray-100 overflow-hidden">
+                          <div className="overflow-x-auto">
+                            <table className="min-w-[600px] w-full bg-white">
+                              <thead className="bg-gray-50">
+                                <tr className="text-left text-xs font-extrabold uppercase tracking-wide text-gray-500">
+                                  <th className="px-4 py-3">Product</th>
+                                  <th className="px-4 py-3">Qty</th>
+                                  <th className="px-4 py-3">Price (LKR)</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-gray-100">
+                                {(Array.isArray(activeOrder?.orderedItems) ? activeOrder.orderedItems : []).map((it) => {
+                                  const name = it?.product?.name || "—";
+                                  const image = it?.product?.image;
+                                  const price = it?.product?.price ?? 0;
+                                  const qty = Number(it?.quantity ?? 0) || 0;
+
+                                  return (
+                                    <tr key={it?._id || name} className="hover:bg-gray-50/60 transition">
+                                      <td className="px-4 py-3">
+                                        <div className="flex items-center gap-3">
+                                          <div className="h-10 w-10 rounded-xl ring-1 ring-gray-200 bg-gray-50 overflow-hidden flex items-center justify-center">
+                                            {image ? (
+                                              <img
+                                                src={image}
+                                                alt={name}
+                                                className="h-full w-full object-cover"
+                                              />
+                                            ) : (
+                                              <span className="text-xs font-bold text-gray-400">No image</span>
+                                            )}
+                                          </div>
+                                          <div>
+                                            <div className="text-sm font-extrabold text-gray-900">{name}</div>
+                                            <div className="text-xs text-gray-500">{it?.product?.key || ""}</div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td className="px-4 py-3 text-sm text-gray-700 font-bold">{qty}</td>
+                                      <td className="px-4 py-3 text-sm font-extrabold text-gray-900">{formatMoney(price)}</td>
+                                    </tr>
+                                  );
+                                })}
+
+                                {(!Array.isArray(activeOrder?.orderedItems) || activeOrder.orderedItems.length === 0) && (
+                                  <tr>
+                                    <td className="px-4 py-6 text-sm text-gray-500" colSpan={3}>
+                                      No items in this order.
+                                    </td>
+                                  </tr>
+                                )}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            )
+          }
         </div>
       </div>
     </div>
