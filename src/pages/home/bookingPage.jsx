@@ -72,10 +72,7 @@ export default function BookingPage() {
       {/* keep your existing design */}
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow p-4 md:p-5 mt-3">
         <h2 className="text-lg font-bold text-gray-900">Booking Dates</h2>
-        <p className="text-xs text-gray-500 mt-1">
-          Select starting and ending dates. Total days are calculated
-          automatically.
-        </p>
+
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           <div className="flex flex-col gap-1">
