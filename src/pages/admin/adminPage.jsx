@@ -43,11 +43,11 @@ export default function AdminPage(props){
 
 
     return(
-    <div className="w-full min-h-screen flex bg-primary">
+    <div className="w-full min-h-screen flex flex-col md:flex-row bg-primary">
       {/* Sidebar */}
-      <div className="w-[240px] min-h-screen bg-accent text-white shadow-2xl sticky top-0">
+      <div className="w-full md:w-[240px] bg-accent text-white shadow-2xl md:sticky md:top-0">
         {/* Brand / Title */}
-        <div className="h-[100px] flex items-center px-5 border-b border-white/15">
+        <div className="h-[70px] md:h-[100px] flex items-center px-4 md:px-5 border-b border-white/15">
           <div className="flex flex-col leading-tight">
             <span className="text-lg font-extrabold tracking-wide">KV Admin</span>
             <span className="text-xs text-white/75">Dashboard</span>
@@ -55,15 +55,15 @@ export default function AdminPage(props){
         </div>
 
         {/* Nav */}
-        <div className="p-4 flex flex-col gap-2">
-          <button className="w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 transition">
+        <div className="p-3 md:p-4 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible">
+          <button className="shrink-0 whitespace-nowrap w-auto md:w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 transition">
             <BsGraphDown className="text-lg" />
             Dashboard
           </button>
 
           <Link
             to="/admin/orders"
-            className="w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/0 hover:bg-white/10 transition no-underline text-white"
+            className="shrink-0 whitespace-nowrap w-auto md:w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/0 hover:bg-white/10 transition no-underline text-white"
           >
             <FaRegBookmark className="text-lg" />
             Orders
@@ -71,7 +71,7 @@ export default function AdminPage(props){
 
           <Link
             to="/admin/items"
-            className="w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/0 hover:bg-white/10 transition no-underline text-white"
+            className="shrink-0 whitespace-nowrap w-auto md:w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/0 hover:bg-white/10 transition no-underline text-white"
           >
             <MdOutlineSpeaker className="text-lg" />
             Items
@@ -79,7 +79,7 @@ export default function AdminPage(props){
 
           <Link
             to="/admin/users"
-            className="w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/0 hover:bg-white/10 transition no-underline text-white"
+            className="shrink-0 whitespace-nowrap w-auto md:w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/0 hover:bg-white/10 transition no-underline text-white"
           >
             <FaRegUser className="text-lg" />
             Users
@@ -90,7 +90,7 @@ export default function AdminPage(props){
       {/* Content */}
       <div className="flex-1 min-w-0">
         {/* Top bar */}
-        <div className="h-[100px] bg-white shadow flex items-center justify-between px-6 sticky top-0 z-40">
+        <div className="h-[70px] md:h-[100px] bg-white shadow flex items-center justify-between px-4 md:px-6 sticky top-0 z-40">
           <div>
             <h1 className="text-xl md:text-2xl font-extrabold text-gray-900">Admin Panel</h1>
             <p className="text-xs text-gray-500 mt-1">Manage bookings, items, and users</p>

@@ -83,10 +83,10 @@ export default function UpdateProduct() {
 }
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 flex justify-center items-start py-10">
+    <div className="w-full min-h-screen bg-gray-100 flex justify-center items-start px-4 py-8 md:py-10">
 
       {/* Card */}
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6 md:p-8">
 
         {/* Title */}
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
