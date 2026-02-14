@@ -69,9 +69,9 @@ export default function AdminPage(props){
 
 
     return(
-    <div className="w-full min-h-screen flex flex-col md:flex-row bg-primary">
+    <div className="w-full min-h-screen bg-primary">
       {/* Sidebar */}
-      <div className="hidden md:block md:w-[240px] bg-accent text-white shadow-2xl md:sticky md:top-0">
+      <div className="hidden md:block md:fixed md:inset-y-0 md:left-0 md:w-[240px] bg-accent text-white shadow-2xl">
         {/* Brand / Title */}
         <div className="h-[70px] md:h-[100px] flex items-center px-4 md:px-5 border-b border-white/15">
           <div className="flex flex-col leading-tight">
@@ -122,7 +122,7 @@ export default function AdminPage(props){
       </div>
 
       {/* Content */}
-      <div className="flex-1 min-w-0">
+      <div className="min-h-screen min-w-0 md:pl-[240px]">
         {/* Top bar */}
         <div className="h-[70px] md:h-[100px] bg-white shadow flex items-center px-4 md:px-6 sticky top-0 z-40 relative">
           <div>
