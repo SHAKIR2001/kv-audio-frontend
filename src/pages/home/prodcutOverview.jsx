@@ -24,16 +24,16 @@ export default function ProductOverview(){
 
 
     return(
-        <div className="w-full h-full  flex justify-center items-center">
+        <div className="w-full min-h-screen flex justify-center items-start md:items-center px-4 py-6">
         {loadingStatus == "loading" &&<div className="w-full h-full flex justify-center items-center">
             <div className="h-[70px] w-[70px] border-b-2 rounded-b-full border-b-accent animate-spin "></div>
         </div> }
-        {loadingStatus == "loaded" && <div className="w-full h-full flex justify-center items-center">
-            <div className="w-[49%] h-full  ">
+        {loadingStatus == "loaded" && <div className="w-full max-w-6xl flex flex-col md:flex-row justify-center items-stretch md:items-center gap-6">
+            <div className="w-full md:w-1/2 h-auto">
                 <ImageSlider images={product.image}/>
             </div>
-                        <div className="w-[49%] h-full flex flex-col px-6 mt-3">
-                            <div className="w-full max-w-xl bg-white rounded-xl shadow-md p-6">
+                        <div className="w-full md:w-1/2 h-auto flex flex-col md:px-6 mt-6 md:mt-3">
+                            <div className="w-full max-w-xl mx-auto bg-white rounded-xl shadow-md p-4 sm:p-6">
                                 <div className="flex items-start justify-between gap-4">
                                     <div className="min-w-0">
                                         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 break-words">
