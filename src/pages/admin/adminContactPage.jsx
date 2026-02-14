@@ -83,6 +83,48 @@ export default function AdminContactPage() {
         setActiveMessage(null);
     }
 
+    async function resolveMessage(m) {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            toast.error("Not authorized. Please login again.");
+            return;
+        }
+
+        const contactId = m?.id;
+        if (contactId === undefined || contactId === null || contactId === "") {
+            toast.error("Missing message id");
+            return;
+        }
+
+        try {
+            const res = await axios.put(
+                `${import.meta.env.VITE_BACKEND_URL}/api/contact/${encodeURIComponent(String(contactId))}`,
+                {},
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            const updated = res?.data?.message ?? res?.data;
+
+            setMessages((prev) =>
+                (Array.isArray(prev) ? prev : []).map((x) => {
+                    const same = (x?._id && x._id === m?._id) || (x?.id != null && x.id === m?.id);
+                    if (!same) return x;
+                    if (updated && (updated?._id || updated?.id != null)) return updated;
+                    return { ...x, isResolved: true };
+                })
+            );
+
+            if (activeMessage && ((activeMessage?._id && activeMessage._id === m?._id) || (activeMessage?.id != null && activeMessage.id === m?.id))) {
+                setActiveMessage((p) => ({ ...(p || {}), isResolved: true }));
+            }
+
+            toast.success("Marked as resolved");
+        } catch (err) {
+            console.error(err);
+            toast.error(err?.response?.data?.error || err?.response?.data?.message || "Failed to resolve");
+        }
+    }
+
     return (
         <div className="w-full p-4 md:p-6">
             <div className="max-w-7xl mx-auto">
@@ -135,13 +177,17 @@ export default function AdminContactPage() {
                                             <th className="px-5 py-4">Subject</th>
                                             <th className="px-5 py-4">Status</th>
                                             <th className="px-5 py-4">Received</th>
-                                            <th className="px-5 py-4 text-right">Action</th>
+                                            <th className="px-5 py-4 text-right">Resolve</th>
                                         </tr>
                                     </thead>
 
                                     <tbody className="divide-y divide-gray-100">
                                         {sortedMessages.map((m) => (
-                                            <tr key={m?._id || `${m?.email || ""}-${m?.createdAt || ""}`} className="hover:bg-gray-50/60 transition">
+                                            <tr
+                                                key={m?._id || `${m?.email || ""}-${m?.createdAt || ""}`}
+                                                className="hover:bg-gray-50/60 transition cursor-pointer"
+                                                onClick={() => openMessage(m)}
+                                            >
                                                 <td className="px-5 py-4">
                                                     <div className="font-bold text-gray-900 truncate max-w-[220px]">{m?.name || "—"}</div>
                                                 </td>
@@ -166,10 +212,19 @@ export default function AdminContactPage() {
                                                 <td className="px-5 py-4 text-right">
                                                     <button
                                                         type="button"
-                                                        className="h-9 px-3 rounded-xl bg-gray-900 text-white text-sm font-semibold hover:bg-gray-800 transition cursor-pointer"
-                                                        onClick={() => openMessage(m)}
+                                                        className={[
+                                                            "h-9 px-3 rounded-xl text-white text-sm font-semibold transition",
+                                                            m?.isResolved ? "bg-gray-300 cursor-not-allowed" : "bg-gray-900 hover:bg-gray-800 cursor-pointer",
+                                                        ].join(" ")}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            if (m?.isResolved) return;
+                                                            resolveMessage(m);
+                                                        }}
+                                                        disabled={!!m?.isResolved}
                                                     >
-                                                        View
+                                                        {m?.isResolved ? "Resolved" : "Resolve"}
                                                     </button>
                                                 </td>
                                             </tr>
