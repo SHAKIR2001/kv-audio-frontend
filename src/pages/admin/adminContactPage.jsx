@@ -8,6 +8,7 @@ export default function AdminContactPage() {
     const [state, setState] = useState("loading"); // loading | success | error
     const [activeMessage, setActiveMessage] = useState(null);
     const [modalOpened, setModalOpened] = useState(false);
+    const [statusFilter, setStatusFilter] = useState("all"); // all | resolved | unresolved
 
     async function fetchMessages() {
         const token = localStorage.getItem("token");
@@ -54,11 +55,18 @@ export default function AdminContactPage() {
         return () => window.removeEventListener("keydown", onKeyDown);
     }, [modalOpened]);
 
-    const sortedMessages = useMemo(() => {
-        const list = Array.isArray(messages) ? [...messages] : [];
+    const visibleMessages = useMemo(() => {
+        let list = Array.isArray(messages) ? [...messages] : [];
+
+        if (statusFilter === "resolved") {
+            list = list.filter((m) => m?.isResolved === true);
+        } else if (statusFilter === "unresolved") {
+            list = list.filter((m) => m?.isResolved !== true);
+        }
+
         list.sort((a, b) => new Date(b?.createdAt || 0).getTime() - new Date(a?.createdAt || 0).getTime());
         return list;
-    }, [messages]);
+    }, [messages, statusFilter]);
 
     function formatDateTime(value) {
         if (!value) return "—";
@@ -135,13 +143,26 @@ export default function AdminContactPage() {
                             <p className="text-sm text-gray-500 mt-1">Customer contact submissions</p>
                         </div>
 
-                        <button
-                            type="button"
-                            onClick={fetchMessages}
-                            className="h-10 px-4 rounded-xl bg-purple-600 text-white font-semibold hover:bg-purple-700 transition cursor-pointer"
-                        >
-                            Refresh
-                        </button>
+                        <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
+                            <select
+                                value={statusFilter}
+                                onChange={(e) => setStatusFilter(e.target.value)}
+                                className="h-10 px-3 rounded-xl bg-white ring-1 ring-gray-200 text-sm font-semibold text-gray-800 outline-none focus:ring-2 focus:ring-purple-300 cursor-pointer"
+                                aria-label="Filter messages by status"
+                            >
+                                <option value="all">All</option>
+                                <option value="unresolved">Unresolved</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+
+                            <button
+                                type="button"
+                                onClick={fetchMessages}
+                                className="h-10 px-4 rounded-xl bg-purple-600 text-white font-semibold hover:bg-purple-700 transition cursor-pointer"
+                            >
+                                Refresh
+                            </button>
+                        </div>
                     </div>
 
                     {state === "loading" && (
@@ -158,14 +179,21 @@ export default function AdminContactPage() {
                         </div>
                     )}
 
-                    {state === "success" && sortedMessages.length === 0 && (
+                    {state === "success" && messages.length === 0 && (
                         <div className="mt-6 p-8 rounded-xl bg-gray-50 ring-1 ring-gray-100 text-center">
                             <div className="text-sm font-semibold text-gray-800">No messages yet</div>
                             <div className="text-xs text-gray-500 mt-1">When customers use the contact form, messages appear here.</div>
                         </div>
                     )}
 
-                    {state === "success" && sortedMessages.length > 0 && (
+                    {state === "success" && messages.length > 0 && visibleMessages.length === 0 && (
+                        <div className="mt-6 p-8 rounded-xl bg-gray-50 ring-1 ring-gray-100 text-center">
+                            <div className="text-sm font-semibold text-gray-800">No messages found</div>
+                            <div className="text-xs text-gray-500 mt-1">Try changing the status filter.</div>
+                        </div>
+                    )}
+
+                    {state === "success" && visibleMessages.length > 0 && (
                         <div className="mt-6 overflow-hidden rounded-2xl ring-1 ring-gray-100">
                             <div className="overflow-x-auto">
                                 <table className="min-w-[980px] w-full bg-white">
@@ -182,7 +210,7 @@ export default function AdminContactPage() {
                                     </thead>
 
                                     <tbody className="divide-y divide-gray-100">
-                                        {sortedMessages.map((m) => (
+                                        {visibleMessages.map((m) => (
                                             <tr
                                                 key={m?._id || `${m?.email || ""}-${m?.createdAt || ""}`}
                                                 className="hover:bg-gray-50/60 transition cursor-pointer"
