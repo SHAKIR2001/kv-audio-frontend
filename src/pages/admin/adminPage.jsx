@@ -7,10 +7,11 @@ import AddProduct from "./addProductPage"
 import UpdateProduct from "./updateItemPage";
 import AdminUsersPage from "./adminUsersPage";
 import AdminOrderPage from "./adminOrderPage";
+import AdminContactPage from "./adminContactPage";
 import { useState,useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { FiLogOut, FiMenu, FiX } from "react-icons/fi";
+import { FiLogOut, FiMail, FiMenu, FiX } from "react-icons/fi";
 
 export default function AdminPage(props){
 
@@ -108,6 +109,14 @@ export default function AdminPage(props){
           >
             <FaRegUser className="text-lg" />
             Users
+          </Link>
+
+          <Link
+            to="/admin/messages"
+            className="shrink-0 whitespace-nowrap w-auto md:w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl bg-white/0 hover:bg-white/10 transition no-underline text-white"
+          >
+            <FiMail className="text-lg" />
+            Messages
           </Link>
         </div>
       </div>
@@ -210,6 +219,14 @@ export default function AdminPage(props){
                 Users
               </Link>
 
+              <Link
+                to="/admin/messages"
+                className="w-full h-11 text-sm font-semibold cursor-pointer flex items-center gap-3 px-4 rounded-xl hover:bg-white/10 transition no-underline text-white"
+              >
+                <FiMail className="text-lg" />
+                Messages
+              </Link>
+
               <button
                 type="button"
                 onClick={handleLogout}
@@ -231,6 +248,7 @@ export default function AdminPage(props){
               <Route path="/items/add" element={<AddProduct/>} />
               <Route path="/items/edit" element={<UpdateProduct/>} />
               <Route path="/users" element={<AdminUsersPage/>} />
+              <Route path="/messages" element={<AdminContactPage/>} />
             </Routes>}
           </div>
         </div>
