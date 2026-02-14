@@ -69,6 +69,7 @@ export default function RegisterPage() {
           <div className="w-full mb-4">
             <input
               type="text"
+              required
               placeholder="First Name"
               className="w-full h-10 bg-transparent border-b-2 border-gray-400 text-white text-sm sm:text-base outline-none focus:border-purple-500 transition"
               value={firstName}
@@ -80,6 +81,7 @@ export default function RegisterPage() {
           <div className="w-full mb-4">
             <input
               type="text"
+              required
               placeholder="Last Name"
               className="w-full h-10 bg-transparent border-b-2 border-gray-400 text-white text-sm sm:text-base outline-none focus:border-purple-500 transition"
               value={lastName}
@@ -91,6 +93,7 @@ export default function RegisterPage() {
           <div className="w-full mb-4">
             <input
               type="email"
+              required
               placeholder="Email"
               className="w-full h-10 bg-transparent border-b-2 border-gray-400 text-white text-sm sm:text-base outline-none focus:border-purple-500 transition"
               value={email}
@@ -102,6 +105,7 @@ export default function RegisterPage() {
           <div className="w-full mb-4">
             <input
               type="password"
+              required
               placeholder="Password"
               className="w-full h-10 bg-transparent border-b-2 border-gray-400 text-white text-sm sm:text-base outline-none focus:border-purple-500 transition"
               value={password}
@@ -113,6 +117,7 @@ export default function RegisterPage() {
           <div className="w-full mb-4">
             <input
               type="text"
+              required
               placeholder="Address"
               className="w-full h-10 bg-transparent border-b-2 border-gray-400 text-white text-sm sm:text-base outline-none focus:border-purple-500 transition"
               value={address}
@@ -124,6 +129,7 @@ export default function RegisterPage() {
           <div className="w-full mb-6">
             <input
               type="text"
+              required
               placeholder="Phone Number"
               className="w-full h-10 bg-transparent border-b-2 border-gray-400 text-white text-sm sm:text-base outline-none focus:border-purple-500 transition"
               value={phone}
