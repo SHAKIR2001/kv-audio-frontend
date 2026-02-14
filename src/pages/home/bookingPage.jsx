@@ -47,11 +47,15 @@ export default function BookingPage() {
     cart.days = daysBetween; 
 
     const token = localStorage.getItem("token");
+      if(token == null){
+        window.location.href = "/login"
+        return
+      }
     axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/orders`, cart, {
         headers : {
             Authorization : `Bearer ${token}`
         }
-    
+   
     }).then( (res)=>{
         console.log(res.data);
         localStorage.removeItem("cart");

@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
+import toast from "react-hot-toast";
 import {
     FiCalendar,
     FiGrid,
     FiHome,
     FiImage,
+    FiLogIn,
+    FiLogOut,
     FiMail,
     FiMenu,
     FiX,
@@ -14,13 +17,29 @@ import {
 export default function Header(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const token = localStorage.getItem("token");
+    const isLoggedIn = Boolean(token && token !== "null" && token !== "undefined" && token.trim().length > 0);
+
+    function handleLogin() {
+        setIsMenuOpen(false);
+        navigate("/login");
+    }
+
+    function handleLogout() {
+        localStorage.removeItem("token");
+        setIsMenuOpen(false);
+        toast.success("Logged out");
+        navigate("/login");
+    }
 
     const navItems = useMemo(
         () => ([
             { to: "/", label: "Home", icon: FiHome },
             { to: "/items", label: "Items", icon: FiGrid },
             { to: "/gallery", label: "Gallery", icon: FiImage },
-            { to: "/booking", label: "Booking", icon: FiCalendar },
+            { to: "/booking", label: "Cart", icon: FiCalendar },
             { to: "/contact", label: "Contact", icon: FiMail },
         ]),
         []
@@ -85,14 +104,34 @@ export default function Header(){
                     </NavLink>
                 </nav>
 
-                {/* Desktop booking/cart */}
-                <NavLink
-                    to="/booking"
-                    className="hidden md:flex text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300"
-                    aria-label="Booking"
-                >
-                    <FaCartShopping />
-                </NavLink>
+                {/* Desktop actions */}
+                <div className="hidden md:flex items-center gap-4">
+                    <NavLink
+                        to="/booking"
+                        className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300"
+                        aria-label="Booking"
+                    >
+                        <FaCartShopping />
+                    </NavLink>
+
+                    {isLoggedIn ? (
+                        <button
+                            type="button"
+                            onClick={handleLogout}
+                            className="h-10 px-5 rounded-full bg-white/95 text-accent font-semibold hover:bg-white transition"
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={handleLogin}
+                            className="h-10 px-5 rounded-full bg-white/95 text-accent font-semibold hover:bg-white transition"
+                        >
+                            Login
+                        </button>
+                    )}
+                </div>
 
                 {/* Mobile hamburger */}
                 <button
@@ -119,7 +158,7 @@ export default function Header(){
 
                 {/* Panel */}
                 <aside
-                    className={`absolute left-0 top-0 h-full w-[82%] max-w-[360px] bg-primary transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
+                    className={`absolute left-0 top-0 h-full w-[82%] max-w-[360px] bg-primary transition-transform duration-300 flex flex-col ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
                     role="dialog"
                     aria-modal="true"
                 >
@@ -138,7 +177,7 @@ export default function Header(){
                         </button>
                     </div>
 
-                    <nav className="py-4">
+                    <nav className="py-4 flex-1">
                         {navItems.map(({ to, label, icon: Icon }) => (
                             <NavLink
                                 key={to}
@@ -154,6 +193,28 @@ export default function Header(){
                             </NavLink>
                         ))}
                     </nav>
+
+                    <div className="p-5 border-t border-gray-200">
+                        {isLoggedIn ? (
+                            <button
+                                type="button"
+                                onClick={handleLogout}
+                                className="w-full h-11 inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-accent text-white font-semibold hover:opacity-95 transition "
+                            >
+                                <FiLogOut size={18} />
+                                Logout
+                            </button>
+                        ) : (
+                            <button
+                                type="button"
+                                onClick={handleLogin}
+                                className="w-full h-11 inline-flex items-center justify-center gap-2 rounded-lg bg-accent text-white font-semibold hover:opacity-95 transition "
+                            >
+                                <FiLogIn size={18} />
+                                Login
+                            </button>
+                        )}
+                    </div>
                 </aside>
             </div>
         </>

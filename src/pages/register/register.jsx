@@ -45,24 +45,23 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-picture bg-cover bg-center">
-      
-      <form onSubmit={handleSubmit}>
+    <div className="w-full min-h-screen flex justify-center items-center bg-picture bg-cover bg-center px-4 py-10">
+      <form onSubmit={handleSubmit} className="w-full max-w-md">
         {/* Card */}
-        <div className="w-[400px] p-8 backdrop-blur-xl bg-black/40 rounded-2xl shadow-2xl flex flex-col items-center">
+        <div className="w-full p-6 sm:p-8 backdrop-blur-xl bg-black/40 rounded-2xl shadow-2xl flex flex-col items-center">
 
           {/* Logo */}
           <img
             src="logo.png"
             alt="Logo"
-            className="w-[150px] h-[150px] object-cover mb-2"
+            className="w-[110px] h-[110px] sm:w-[150px] sm:h-[150px] object-cover mb-2"
           />
 
           {/* Title */}
-          <h1 className="text-3xl font-bold text-white mb-1">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1 text-center">
             Create Account
           </h1>
-          <p className="text-gray-300 mb-6 text-sm">
+          <p className="text-gray-300 mb-6 text-sm text-center">
             Please fill in the details
           </p>
 
@@ -71,7 +70,7 @@ export default function RegisterPage() {
             <input
               type="text"
               placeholder="First Name"
-              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
+              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-base sm:text-lg outline-none focus:border-purple-500 transition"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -82,7 +81,7 @@ export default function RegisterPage() {
             <input
               type="text"
               placeholder="Last Name"
-              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
+              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-base sm:text-lg outline-none focus:border-purple-500 transition"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
@@ -93,7 +92,7 @@ export default function RegisterPage() {
             <input
               type="email"
               placeholder="Email"
-              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
+              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-base sm:text-lg outline-none focus:border-purple-500 transition"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -104,7 +103,7 @@ export default function RegisterPage() {
             <input
               type="password"
               placeholder="Password"
-              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
+              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-base sm:text-lg outline-none focus:border-purple-500 transition"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -115,7 +114,7 @@ export default function RegisterPage() {
             <input
               type="text"
               placeholder="Address"
-              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
+              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-base sm:text-lg outline-none focus:border-purple-500 transition"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -126,7 +125,7 @@ export default function RegisterPage() {
             <input
               type="text"
               placeholder="Phone Number"
-              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-lg outline-none focus:border-purple-500 transition"
+              className="w-full h-12 bg-transparent border-b-2 border-gray-400 text-white text-base sm:text-lg outline-none focus:border-purple-500 transition"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
@@ -135,7 +134,7 @@ export default function RegisterPage() {
           {/* Register Button */}
           <button
             type="submit"
-            className="w-full h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold text-lg"
+            className="w-full h-12 bg-purple-600 hover:bg-purple-700 transition rounded-lg text-white font-semibold text-base sm:text-lg cursor-pointer"
           >
             Register
           </button>

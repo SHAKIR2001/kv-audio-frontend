@@ -63,7 +63,7 @@ export default function ProductOverview(){
                                 </div>
 
                                 <button
-                                    className="mt-6 w-full h-11 inline-flex items-center justify-center rounded-lg bg-purple-600 text-white font-semibold text-sm hover:bg-purple-700 active:bg-purple-800 transition " onClick={()=>{addToCart(product.key,1); toast.success("Item Added to cart"); console.log(loadCart())}}
+                                    className="mt-6 w-full h-11 inline-flex items-center justify-center rounded-lg bg-purple-600 text-white font-semibold text-sm hover:bg-purple-700 active:bg-purple-800 transition " onClick={()=>{addToCart(product.key,1); toast.success("Item Added to cart",{ position: "top-center"}); console.log(loadCart())}}
                                 >
                                     Add to cart
                                 </button>
