@@ -25,7 +25,7 @@ export default function LoginPage(){
                 localStorage.setItem("token", res.data.token) //store the key and value in the  cashe table(token)
                  
                if(user.role === "admin"){
-                    navigate("/admin")
+                    navigate("/admin/orders")
                 }else{
                     navigate("/")
                 }

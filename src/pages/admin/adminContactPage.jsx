@@ -133,6 +133,7 @@ export default function AdminContactPage() {
                                             <th className="px-5 py-4">Email</th>
                                             <th className="px-5 py-4">Phone</th>
                                             <th className="px-5 py-4">Subject</th>
+                                            <th className="px-5 py-4">Status</th>
                                             <th className="px-5 py-4">Received</th>
                                             <th className="px-5 py-4 text-right">Action</th>
                                         </tr>
@@ -150,6 +151,16 @@ export default function AdminContactPage() {
                                                 <td className="px-5 py-4 text-sm text-gray-700">{m?.phone || "—"}</td>
                                                 <td className="px-5 py-4">
                                                     <div className="text-sm font-semibold text-gray-900 truncate max-w-[320px]">{m?.subject || "—"}</div>
+                                                </td>
+                                                <td className="px-5 py-4">
+                                                    <span
+                                                        className={[
+                                                            "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-extrabold ring-1",
+                                                            m?.isResolved ? "bg-green-50 text-green-700 ring-green-200" : "bg-yellow-50 text-yellow-700 ring-yellow-200",
+                                                        ].join(" ")}
+                                                    >
+                                                        {m?.isResolved ? "Resolved" : "Unresolved"}
+                                                    </span>
                                                 </td>
                                                 <td className="px-5 py-4 text-sm text-gray-700">{formatDateTime(m?.createdAt)}</td>
                                                 <td className="px-5 py-4 text-right">
@@ -191,6 +202,13 @@ export default function AdminContactPage() {
 
                         <div className="p-5 max-h-[75vh] overflow-auto">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+                                <div className="text-sm">
+                                    <span className="font-extrabold text-gray-800">Status:</span>{" "}
+                                    <span className={["font-extrabold", activeMessage?.isResolved ? "text-green-700" : "text-yellow-700"].join(" ")}
+                                    >
+                                        {activeMessage?.isResolved ? "Resolved" : "Unresolved"}
+                                    </span>
+                                </div>
                                 <div className="text-sm">
                                     <span className="font-extrabold text-gray-800">Name:</span>{" "}
                                     <span className="text-gray-700 font-semibold">{activeMessage?.name || "—"}</span>
