@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -18,10 +19,23 @@ export default function Contact() {
   function onSubmit(e) {
     e.preventDefault();
 
-    // Frontend-only contact page (no backend endpoint needed)
-    // If you later add an API endpoint, we can post this data with axios.
-    toast.success("Message saved (demo). Add backend to actually send it.");
-    setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/contact`,{
+      name : form.name,
+      email : form.email,
+      phone : form.phone,
+      subject : form.subject,
+      message : form.message
+
+    }).then(()=>{
+      toast.success("Message sent succeessfully");
+    }).catch((e)=>{
+      console.log(e);
+      toast.error("Faild to send a message")
+    })
+
+
+    
+
   }
 
   return (
@@ -105,6 +119,9 @@ export default function Contact() {
                     Phone (optional)
                   </label>
                   <input
+                    type = "tel"
+                    inputMode="numeric"
+                    maxLength={10}
                     name="phone"
                     value={form.phone}
                     onChange={onChange}
@@ -151,7 +168,7 @@ export default function Contact() {
               </button>
 
               <p className="text-xs w-35 text-black-500 bg-red-600">
-                //Backend still developing
+                
               </p>
             </form>
           </div>
