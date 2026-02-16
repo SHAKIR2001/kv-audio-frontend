@@ -57,8 +57,8 @@ export default function AdminItemsPage() {
   
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 p-6 relative flex flex-col  items-center ">
-      {!itemsLoaded &&<div className="border-4 my-4 rounded-full w-[100px] h-[100px]  border-b-green-500 animate-spin"></div>}
+    <div className="w-full min-h-screen bg-gray-100 p-4 md:p-6 relative flex flex-col items-center">
+      {!itemsLoaded &&<div className="border-4 my-4 rounded-full w-[80px] h-[80px] md:w-[100px] md:h-[100px] border-b-green-500 animate-spin"></div>}
       {/* Page Title */}
       <h1 className="text-2xl font-bold text-gray-800 mb-6">
         Product Management
@@ -66,7 +66,7 @@ export default function AdminItemsPage() {
       
 
       {/* Table Card */}
-      {itemsLoaded &&<div className="bg-white rounded-xl shadow-lg overflow-x-auto">
+      {itemsLoaded &&<div className="w-full max-w-7xl bg-white rounded-xl shadow-lg overflow-x-auto">
 
         <table className="w-full border-collapse">
           <thead className="bg-gray-200 text-gray-700 text-sm">
@@ -138,7 +138,7 @@ export default function AdminItemsPage() {
 
       {/* Add Item Floating Button */}
       <Link to="/admin/items/add">
-        <CiCirclePlus className="text-[80px] text-purple-600 hover:text-purple-800 cursor-pointer fixed bottom-6 right-6 drop-shadow-lg" />
+        <CiCirclePlus className="text-[64px] md:text-[80px] text-purple-600 hover:text-purple-800 cursor-pointer fixed bottom-5 right-5 md:bottom-6 md:right-6 drop-shadow-lg" />
       </Link>
     </div>
   );
