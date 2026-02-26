@@ -15,8 +15,36 @@ export function loadCart (){  //this function get related cart details that is s
 
     }
 
-    cart = JSON.parse(cart); //if already a cart avauilable then get the cart details in to cart
-    return cart;
+        cart = JSON.parse(cart); //if already a cart avauilable then get the cart details in to cart
+
+        // normalize old/invalid cart shapes
+        let changed = false;
+        if (!cart || typeof cart !== "object") {
+            cart = {};
+            changed = true;
+        }
+        if (!Array.isArray(cart.orderedItems)) {
+            cart.orderedItems = [];
+            changed = true;
+        }
+        if (typeof cart.days !== "number" || Number.isNaN(cart.days) || cart.days < 1) {
+            cart.days = 1;
+            changed = true;
+        }
+        if (typeof cart.startingDate !== "string" || cart.startingDate.length === 0) {
+            cart.startingDate = formatDate(new Date());
+            changed = true;
+        }
+        if (typeof cart.endingDate !== "string" || cart.endingDate.length === 0) {
+            cart.endingDate = formatDate(new Date());
+            changed = true;
+        }
+
+        if (changed) {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        return cart;
 }
 
 export function addToCart(key, quantity){  //using this function we can add an item to the cart
@@ -37,6 +65,8 @@ export function addToCart(key, quantity){  //using this function we can add an i
     const cartString = JSON.stringify(cart);
     localStorage.setItem("cart", cartString);
 
+    window.dispatchEvent(new Event("cartUpdated"));
+
 }
 
 export function removeFromCart(key) {
@@ -45,6 +75,8 @@ export function removeFromCart(key) {
   cart.orderedItems = newCart; //filter sidha itemsei maaththiram localStorage il save seidhal so andha key irukkum item save aahadhu
   const cartString = JSON.stringify(cart);
   localStorage.setItem("cart", cartString);
+
+    window.dispatchEvent(new Event("cartUpdated"));
 }
 
 

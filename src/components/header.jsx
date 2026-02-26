@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import { loadCart } from "../utils/cart";
 import {
     FiCalendar,
     FiGrid,
@@ -16,6 +17,7 @@ import {
 
 export default function Header(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [cartCount, setCartCount] = useState(0);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -44,6 +46,26 @@ export default function Header(){
         ]),
         []
     );
+
+    useEffect(() => {
+        const getCount = () => {
+            const cart = loadCart();
+            const items = Array.isArray(cart?.orderedItems) ? cart.orderedItems : [];
+            return items.reduce((sum, item) => sum + Number(item?.quantity ?? 0), 0);
+        };
+
+        const update = () => setCartCount(getCount());
+
+        update();
+        window.addEventListener("cartUpdated", update);
+        window.addEventListener("storage", update);
+        return () => {
+            window.removeEventListener("cartUpdated", update);
+            window.removeEventListener("storage", update);
+        };
+    }, []);
+
+    const showCartMark = cartCount > 0;
 
     useEffect(() => {
         setIsMenuOpen(false);
@@ -108,10 +130,16 @@ export default function Header(){
                 <div className="hidden md:flex items-center gap-4">
                     <NavLink
                         to="/booking"
-                        className="text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300"
+                        className="relative text-white text-lg font-semibold hover:text-gray-200 hover:scale-110 transition-all duration-300"
                         aria-label="Booking"
                     >
                         <FaCartShopping />
+                        {showCartMark && (
+                            <span
+                                className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-red-600"
+                                aria-label="Cart has items"
+                            />
+                        )}
                     </NavLink>
 
                     {isLoggedIn ? (
@@ -190,6 +218,13 @@ export default function Header(){
                             >
                                 <Icon size={18} className="text-gray-500" />
                                 <span>{label}</span>
+
+                                {to === "/booking" && showCartMark && (
+                                    <span
+                                        className="ml-auto h-2.5 w-2.5 rounded-full bg-red-600"
+                                        aria-label="Cart has items"
+                                    />
+                                )}
                             </NavLink>
                         ))}
                     </nav>
