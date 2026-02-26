@@ -74,7 +74,7 @@ export default function Contact() {
             <div className="bg-white rounded-2xl shadow p-6">
               <h3 className="font-bold text-gray-800">Quick Note</h3>
               <p className="text-sm text-gray-600 mt-2">
-                Include the product name (or key) if you’re asking about a specific item.
+                Include the product name if you’re asking about a specific item.
               </p>
             </div>
           </div>
