@@ -15,6 +15,8 @@ export default function BookingPage() {
     (new Date(endingDate) - new Date(startingDate)) / (1000 * 60 * 60 * 24),
    1);
 
+  const hasItems = Array.isArray(cart?.orderedItems) && cart.orderedItems.length > 0;
+
   function reloadCart() {
     setCart(loadCart());
     calculateTotal();
@@ -22,6 +24,12 @@ export default function BookingPage() {
 
   function calculateTotal(){
     const cartInfo = loadCart();
+
+    if (!Array.isArray(cartInfo?.orderedItems) || cartInfo.orderedItems.length === 0) {
+      setTotal(0);
+      return;
+    }
+
     cartInfo.startingDate = startingDate;
     cartInfo.endingDate = endingDate;
     cartInfo.days = daysBetween;
@@ -42,6 +50,11 @@ export default function BookingPage() {
   function handleBookingCreation() {
     const cart = loadCart();
 
+    if (!Array.isArray(cart?.orderedItems) || cart.orderedItems.length === 0) {
+      toast.error("Please add items to your cart before creating a booking");
+      return;
+    }
+
     cart.startingDate = startingDate;
     cart.endingDate = endingDate;
     cart.days = daysBetween; 
@@ -59,6 +72,7 @@ export default function BookingPage() {
     }).then( (res)=>{
         console.log(res.data);
         localStorage.removeItem("cart");
+      window.dispatchEvent(new Event("cartUpdated")); 
         toast.success("Booking added")
         setCart(loadCart());
         
@@ -154,8 +168,9 @@ export default function BookingPage() {
       <div className="w-full flex justify-center ">
         <button
           type="button"
-          className="px-4 max-w-3xl mt-4 h-12 rounded-xl bg-purple-600 text-white font-bold shadow hover:bg-purple-700 transition disabled:opacity-60 cursor-pointer"
+          className="px-4 max-w-3xl mt-4 h-12 rounded-xl bg-purple-600 text-white font-bold shadow hover:bg-purple-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
           onClick={handleBookingCreation}
+          disabled={!hasItems}
         >
           Create Booking
         </button>
